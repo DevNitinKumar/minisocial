@@ -10,8 +10,8 @@ mongoose.connection.on('connected', function() {
 	console.log("mongoose connected to "+ dburl);
 });
 
-mongoose.connection.on('disconnected', function() {
-	console.log("mongoose disconnected");
+mongoose.connection.on('disconnected', function(err) {
+	console.log("mongoose disconnected"+ err);
 });
 
 mongoose.connection.on('error', function(err) {
