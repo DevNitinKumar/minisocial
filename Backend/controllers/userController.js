@@ -19,7 +19,7 @@ const nexmo = new Nexmo({
     apiKey: 'd089bd9d',
     apiSecret: 'r0jOEDoLDDVwUNo0',
     applicationId: 'edfd943c-6d36-484c-aabf-ab438c4699ee',
-    privateKey: '/Users/shashankpanwar/Documents/angularChatApp/angularChat/Backend/data/middlewares/private.key'
+    privateKey: '../data/middlewares/private.key'
 });
 const from = 'Nitin Kumar';
 const to = '917988580827';

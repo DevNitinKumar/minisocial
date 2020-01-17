@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 var dburl 	 = 'mongodb://@localhost:27017/chatapp';
 
 mongoose.Promise = global.Promise;
