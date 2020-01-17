@@ -5,7 +5,6 @@
     "ng": "ng",
     "start" : "MONGO_USER=NitinKumar MONGO_PASSWORD=mongo@Nitin MONGO_DEFAULT_DATABASE=chatapp node app.js",
     "start:dev": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

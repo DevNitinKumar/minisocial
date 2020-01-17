@@ -82,7 +82,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 app.get('/',function(req,res) {
-  res.send("hellloooo");
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 })
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
