@@ -80,15 +80,15 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // app.use(express.static(path.join(__dirname, 'dist/insurance-app')));
 // app.use("/",express.static(path.join(__dirname,"chatApp")));
 
+
+app.get('/',function(req,res) {
+  res.send("hellloooo");
+})
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'An'));
 });
 
-
-app.get('/',function(req,res) {
-  res.send("hellloooo");
-})
 
 
 /**

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start" : "MONGO_USER=NitinKumar MONGO_PASSWORD=mongo@Nitin MONGO_DEFAULT_DATABASE=chatapp node app.js",
+    "start:dev": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
