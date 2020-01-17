@@ -158,7 +158,7 @@ export class SignupComponent implements OnInit {
 
   resolved(captchaResponse: string) {
     console.log(`Resolved captcha with response: ${captchaResponse}`);
-    const secretKey = '6LeEts0UAAAAACyyqpH_WnGyq2606p16h9DAiYzX';
+    const secretKey = '6LdwPdAUAAAAABexN3Xq0t_PHH7sNk74AqYVuwJt';
     this.httpService.verifyCaptcha(captchaResponse,secretKey).subscribe((res) => {
       if (res.success) {
         this.disableSbt = false;
