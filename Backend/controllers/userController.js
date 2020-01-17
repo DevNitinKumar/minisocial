@@ -1,4 +1,4 @@
-const Constants = require("../data/Constants");
+const Constants = require("../data/constants");
 const multer = require("multer");
 const Middleware = require("../data/middlewares/common-functions");
 const CheckUserWare = require("../data/middlewares/check-user");
