@@ -55,12 +55,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,"/dist")));
 app.use("/Backend/data/uploads",express.static(path.join(__dirname,"/Backend/data/uploads")));
-app.use(flash());
-app.use(session({ 
-  cookie: { maxAge: 60000 }, 
-  secret: 'woot',
-  resave: false, 
-  saveUninitialized: false}));
+
 // to log every request
 app.use(function(req, res, next) {
     console.log(req.method, req.url);
@@ -89,6 +84,11 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'An'));
 });
+
+
+app.get('/',function(req,res) {
+  res.send("hellloooo");
+})
 
 
 /**
