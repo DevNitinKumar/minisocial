@@ -53,7 +53,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 // Parsers for POST data
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname,"/dist")));
+app.use(express.static(path.join(__dirname,"/dist/angular-chat")));
 app.use("/Backend/data/uploads",express.static(path.join(__dirname,"/Backend/data/uploads")));
 
 // to log every request
@@ -83,7 +83,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/angular-chat/index.html'));
 });
 
 
