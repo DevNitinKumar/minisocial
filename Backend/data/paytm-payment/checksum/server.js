@@ -23,7 +23,8 @@ http.createServer(function (req, res) {
 			params['ORDER_ID']			= 'TEST_'  + new Date().getTime();
 			params['CUST_ID'] 			= 'Customer001';
 			params['TXN_AMOUNT']			= '1.00';
-			params['CALLBACK_URL']		= 'http://localhost:'+port+'/callback';
+			// params['CALLBACK_URL']		= 'http://localhost:'+port+'/callback';
+			params['CALLBACK_URL']		= 'http://minisocialmedia.herokuapp.com/callback';
 			params['EMAIL']				= 'abc@mailinator.com';
 			params['MOBILE_NO']			= '7777777777';
 

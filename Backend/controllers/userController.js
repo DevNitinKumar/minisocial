@@ -416,7 +416,7 @@ exports.paytmPaymentCheckout = function (data, token, res, callback) {
     paytmParams['MOBILE_NO'] = '7988582058';
     paytmParams['EMAIL'] = 'nitin.kumar@kayosys.com';
     paytmParams['TXN_AMOUNT'] = data.amt.toString();
-    paytmParams['CALLBACK_URL'] = 'http://localhost:3800/api/payment-success';
+    paytmParams['CALLBACK_URL'] = 'http://minisocialmedia.herokuapp.com:3800/api/payment-success';
 
     checksum_lib.genchecksum(paytmParams, "6jDvdgOXJJCOWo&Y", function (err, checksum) {
         if (err) {
@@ -455,7 +455,7 @@ exports.paytmPaymentSuccess = function (data, req, res, callback) {
         //     },
         // );
         return res.redirect(url.format({
-            pathname: "http://localhost:4000/paytm-payment-success",
+            pathname: "http://minisocialmedia.herokuapp.com/paytm-payment-success",
             query: {
                 "currency": data.CURRENCY,
                 "gateway": data.GATEWAYNAME,
@@ -473,7 +473,7 @@ exports.paytmPaymentSuccess = function (data, req, res, callback) {
         }));
     } else {
         return res.redirect(url.format({
-            pathname: "http://localhost:4000/paytm-payment-success",
+            pathname: "http://minisocialmedia.herokuapp.com/paytm-payment-success",
             query: {
                 "currency": data.CURRENCY,
                 "gateway": '',
