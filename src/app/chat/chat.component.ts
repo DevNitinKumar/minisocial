@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit {
   isOnline: boolean;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any, private httpService: HttpService) {
-    this.socket = io('http://localhost:3800');
+    this.socket = io('https://minisocialmedia.herokuapp.com:3800');
   }
 
   ngOnInit() {
