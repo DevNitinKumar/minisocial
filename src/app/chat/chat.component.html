@@ -1,0 +1,84 @@
+<mat-toolbar style="padding-top: 10px;">
+    <div class="row">
+        <div class="col-sm-3">
+            <img style="border-radius: 50%" style="margin-top: 9px;float: left;" src="../../assets/img/default-profile-image.jpg" height="50" width="50" />
+        </div>
+        <div class="col-sm-9">
+            <p style="font-size: 16px;margin-left: 20px;margin-top: 8px;">{{ data.username | titlecase }}</p>
+            <p *ngIf="isOnline" style="font-size: 10px;margin-top: -28px;color: black;font-weight: 500;margin-left: 20px;">
+                <mat-icon style="color: green;font-size: 8px;margin-right: -10px;margin-top: 0px;">brightness_1</mat-icon>
+                Online
+            </p>
+            <p *ngIf="!isOnline" style="font-size: 10px;margin-top: -28px;color: black;font-weight: 500;margin-left: 20px;">
+                <mat-icon style="color: red;font-size: 8px;margin-right: -10px;margin-top: 0px;">brightness_1</mat-icon>
+                Offline
+            </p>
+        </div>
+    </div>
+</mat-toolbar>
+
+<div *ngIf="messageArray?.length !== 0" class="scroll-div" ngx-auto-scroll lock-y-offset="10" observe-attributes>
+    <div style="margin-top:10px" *ngFor="let message of messageArray">
+        <div class="row" *ngIf="userData?.username !== receiverData?.username && userData?.username !== message.senderName">
+            <div class="col-sm-12" style="max-width: 50%;">
+                <div class="post-container leftMsgContainer">
+                    <p>{{ message.body }}</p>
+                    <span>{{ message.createdAt | formatDate }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="userData?.username === message.senderName">
+            <div class="col-sm-6">            
+            </div>
+            <div class="col-sm-6" style="margin-left: -5px;">
+                <div class="post-container rightMsgContainer">
+                    <p>{{ message.body }}</p>
+                    <span>{{ message.createdAt | formatDate }}</span>
+                </div>            
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="typing" style="margin-top:10px">
+        <div class="col-sm-12" style="max-width: 50%;">
+            <div class="post-container leftMsgContainer">
+                <p>{{ receiverData?.username }} is typing...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="messageArray?.length === 0">
+    <p class="no-conversation">No message yet. Start conversation</p>
+</div>
+
+<div class="container footer-div">
+    <form class="example-form">
+        <div class="row">
+            <div class="col-sm-9">           
+                <mat-form-field class="example-full-width" style="width: 100%;padding: 10px;">
+                    <input matInput [(ngModel)]="message"  [ngModelOptions]="{standalone: true}" (keypress)="msgTyping()" #msg maxlength="256">
+                    <mat-hint align="end">{{msg.value.length}} / 256</mat-hint>
+                </mat-form-field>
+            </div>
+            <!-- <div class="col-sm-1" style="margin-top: 30px;">
+                <p (click)="toggled = !toggled">😄</p>
+                <div class="emoji-content-editable"
+                    (emojiPickerCaretEmitter)="handleCurrentCaret($event)"
+                    (input)="content = $event.target.textContent"
+                    [textContent]="content"
+                    contenteditable="true">
+                </div>
+                <i class="emoji-toggle-button"                    
+                    [(emojiPickerIf)]="toggled"
+                    [emojiPickerPreserveSelection]="false"
+                    [emojiPickerDirection]="direction"
+                    [emojiPickerAutofocus]="true"
+                    (emojiPickerSelect)="handleSelection($event)">
+                </i>
+            </div> -->
+            <div class="col-sm-2" style="margin-top: 22px;">
+                <button mat-raised-button color="primary" style="float: right;" (click)="sendMessage(userData?._id,userData?.username,receiverData?._id,receiverData?.username)">SEND</button>                    
+            </div>
+        </div>
+    </form>
+</div>

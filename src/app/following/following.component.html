@@ -1,0 +1,45 @@
+<app-header></app-header>
+<mat-spinner style="margin:300px auto;" mode="indeterminate" *ngIf="loader"></mat-spinner>
+<mat-card class="example-card">
+    <div class="userImage">
+        <img *ngIf="userData?.profileImage !== ''" mat-card-image src="http://localhost:3800/{{userData?.profileImage}}" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <img *ngIf="userData?.profileImage === ''" mat-card-image src="../../assets/img/default-profile-image.jpg" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <h2 style="margin-left : 0px">Hello, {{ userData?.username | titlecase }}</h2>
+    </div>
+</mat-card>
+
+<div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col-sm-3" style="margin-right: 50px;">
+            <app-sidemenu></app-sidemenu>
+        </div>
+        <div class="col-sm-8">
+            <div class="container">
+                <div class="row" *ngIf="allFollowings?.length !== 0">
+                    <div class="col-sm-4" *ngFor="let user of allFollowings">
+                        <div class="pmd-card pmd-card-default pmd-z-depth" style="max-width: 350px">
+                            <div class="pmd-card-media">
+                                <img *ngIf="user?.userFollowedId?.profileImage !== ''" class="img-responsive" width="213" height="150" src="http://localhost:3800/{{user?.userFollowedId?.profileImage}}">
+                                <img *ngIf="user?.userFollowedId?.profileImage === ''" class="img-responsive" width="213" height="150" src="../../assets/img/default-profile-image.jpg">
+                            </div>
+                            <div class="pmd-card-title">
+                                <h2 class="pmd-card-title-text" style="font-size: 16px">{{user?.userFollowedId?.username | titlecase}}</h2>
+                                <span class="pmd-card-subtitle-text">{{user?.userFollowedId?.address | titlecase}}</span>
+                            </div>
+                            <div class="pmd-card-actions">
+                                <!-- <button class="btn btn-sm pmd-btn-raised pmd-ripple-effect btn-info" type="button" *ngIf="!checkInArray(userArr,user?._id)" (click)="followUser(user)">FOLLOW</button> -->
+                                <button class="btn btn-sm pmd-btn-raised pmd-ripple-effect btn-info" type="button" (click)="unfollowUser(user)">UNFOLLOW</button>
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" style="margin-left: 5px;float: right;margin-right: 8px;margin-top: 3px;">comment</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="allFollowings?.length === 0">
+                    <p style="color: black;font-size: 17px;font-weight: 500;">You are not following anyone yet.
+                        To Find Friends <a  [routerLink]="['/people']" [routerLinkActive]="['activeListItem']" [routerLinkActiveOptions]="{exact: true}">Click Here</a>
+                    </p>
+                </div>
+            </div>            
+        </div>            
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="card pmd-card">
+    <!-- Card Header -->
+    <div class="card-header">
+        <h2 class="card-title">View Full Details</h2>
+    </div>
+    <!-- Listing -->
+    <ul class="list-group pmd-list">
+        <li class="list-group-item d-flex flex-row" [routerLink]="['/dashboard']" [routerLinkActive]="['activeListItem']" [routerLinkActiveOptions]="{exact: true}">
+            <span class="media-body" matTooltip="{{postCount?.length}}" matTooltipClass="tooltip-red" matTooltipPosition="above">Posts</span>
+            <i class="material-icons pmd-list-icon pmd-sm">bookmark</i>
+        </li>
+        <li class="list-group-item d-flex flex-row" [routerLink]="['/people']" [routerLinkActive]="['activeListItem']" [routerLinkActiveOptions]="{exact: true}">
+            <span class="media-body">People</span>
+            <i class="material-icons pmd-list-icon pmd-sm">account_circle</i>
+        </li>
+        <li class="list-group-item d-flex flex-row" [routerLink]="['/people/following']" [routerLinkActive]="['activeListItem']" [routerLinkActiveOptions]="{exact: true}">
+            <div class="media-body" matTooltip="{{followingCount?.length}}" matTooltipClass="tooltip-red" matTooltipPosition="above">Following</div>
+            <i class="material-icons pmd-list-icon align-middle">perm_identity</i>
+        </li>
+        <li class="list-group-item d-flex flex-row" [routerLink]="['/people/follower']" [routerLinkActive]="['activeListItem']" [routerLinkActiveOptions]="{exact: true}">
+            <div class="media-body" matTooltip="{{followerCount?.length}}" matTooltipClass="tooltip-red" matTooltipPosition="above">Followers</div>
+            <i class="material-icons pmd-list-icon">portrait</i>
+        </li>
+        <li class="list-group-item d-flex flex-row">
+            <div class="media-body">Photos</div>
+            <i class="material-icons pmd-list-icon">insert_photo</i>
+        </li>
+        <li class="list-group-item d-flex flex-row" [routerLink]="['/notifications']" [routerLinkActive]="['activeListItem']" [routerLinkActiveOptions]="{exact: true}">
+            <div class="media-body">Notifications</div>
+            <i class="material-icons pmd-list-icon">notifications</i>
+        </li>
+        <li class="list-group-item d-flex flex-row" [routerLink]="['/payment']" [routerLinkActive]="['activeListItem']" [routerLinkActiveOptions]="{exact: true}">
+            <div class="media-body">Checkout</div>
+            <i class="material-icons pmd-list-icon">payment</i>
+        </li>
+    </ul>
+</div>

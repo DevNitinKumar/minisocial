@@ -1,0 +1,22 @@
+<app-header></app-header>
+<mat-spinner style="margin:300px auto;" mode="indeterminate" *ngIf="loader"></mat-spinner>
+<div class="container" style="margin-top:100px" *ngIf="!loader">
+	<div class="row text-center">
+        <div class="col-sm-12 col-sm-offset-6">
+            <br><br> <h2 style="color:#0fad00">Success</h2>
+            <img src="https://openjournalsystems.com/wp-content/uploads/2017/07/payment-success-150x150.png">
+            <h3>Dear, {{ payerData.payer.payer_info.first_name}} {{ payerData.payer.payer_info.last_name}}</h3>
+            <p style="font-size:24px;color:#000;margin-top: 22px;">
+                Your Transaction Was Successful with Payer ID : {{ payerData.payer.payer_info.payer_id}}
+            </p>
+            <p style="font-size:18px;color:#000;">
+                We will contact you within 24 hours to process your order. 
+            </p>
+            <p style="font-size:16px;color:#000;">
+               Thank You
+            </p>
+            <a href="/dashboard" class="btn btn-success">Back to Home</a>
+            <br><br>
+        </div>
+	</div>
+</div>

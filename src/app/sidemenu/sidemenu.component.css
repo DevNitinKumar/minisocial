@@ -1,0 +1,20 @@
+.pmd-card:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.12)
+}
+
+.list-group-item:hover {
+    transform: scale(1.1);
+}
+
+li:active, li:focus {
+    outline: 0;
+    border: none;
+}
+
+.activeListItem {
+    background-color: #c1c1c1;
+}
+
+.tooltip-red {
+    background-color: red;
+}

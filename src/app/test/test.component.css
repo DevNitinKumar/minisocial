@@ -1,0 +1,297 @@
+.card-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+  }
+
+  .full-width-div {
+    width: 100%;
+    left: 0;
+  }
+  
+  #display-board {
+    border: 1px solid slategrey;
+    margin: 10px;
+  }
+  
+  .template-image {
+    width: 4vw;
+    padding: 6px;
+    float: left;
+  }
+  
+  .wood h3 {
+    font-family: Silom;
+    color: #dac100;
+    text-align: center;
+    font-size: 3vw;
+    margin-top: 0.3vw;
+  }
+  
+  .wood {
+    width: 100%;
+    float: left;
+    height: 4vw;
+  }
+  
+  #announce {
+    margin: auto;
+    margin-bottom: 0.5vw;
+    color: white;
+    width: 100%;
+    height: 3vw;
+    border: 1px solid rgb(93, 93, 91);
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  /*  preview template 1*/
+  #heading h2 {
+    font-family: century gothic;
+    float: left;
+    color: #fff;
+    font-weight: bold;
+    width: 40vw;
+    white-space: nowrap;
+  }
+  #dollar {
+    font-family: century gothic;
+    float: right;
+    color: #dac100;
+    font-weight: bold;
+  }
+  
+  #heading p {
+    color: #c6c6c6;
+    font-family: century gothic;
+    float: left;
+    margin-top: 2px;
+    font-weight: normal;
+  }
+  .icon-image {
+    border-radius: 50%;
+    width: 3.6vw;
+    height: 3.6vw;
+    margin-top: 10px;
+  }
+  
+  #headings h2 {
+    font-family: Comic Sans Ms;    
+    float: left;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 1vw;
+    width: 100%;
+    white-space: nowrap;
+  }
+  #dollars {
+    font-family: Comic Sans MS;
+    float: left;
+    color: #00ff54;
+    font-weight: bold;
+    margin-top : 7px;
+  }
+
+  #headings h3 {
+    font-family: century gothic;
+    color: #dadada;
+    float: left;
+    margin-top: 3px;
+    margin-left: 1vw;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+  .icon-images {
+    margin: auto;
+    height: 6vw;
+    width: 6vw;
+  }
+  
+  #heading3 h3 {
+    font-family: Comic Sans Ms;
+    float: left;
+    color: #fff;
+    width: 100%;
+    white-space: nowrap;
+  }
+  #dollar3 {
+    font-family: Comic Sans MS;
+    float: right;
+    color: #00ff54;
+    font-weight: bold;
+  }
+  #heading3 h2 {
+    font-family: Comic Sans Ms;
+    color: #fff;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .icon-image3 {
+    margin-left: -0.5vw;
+    float: left;
+    width: 5vw;
+    height: 5vw;
+  }
+  
+  #heading4 h3 {
+    font-family: Comic Sans Ms;
+    float: left;
+    color: #fff;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  #dollar4 {
+    font-family: Comic Sans MS;
+    float: right;
+    color: #00ff54;
+    font-weight: bold;
+  }
+
+  #heading4 h2 {
+    font-family: Comic Sans Ms;
+    color: #fff;
+    font-weight: bold;
+    width: 100%;
+    white-space: nowrap;
+  }
+  .icon-image4 {
+    margin-left: -1.2vw;
+    margin-top: 0.5vw;
+    float: left;
+    width: 4vw;
+    height: 4vw;
+  }
+  .edit {
+    cursor: pointer;
+  }
+  #newTemp {
+    color: white;
+    margin-top: 2vw;
+  }
+  
+  #detail {
+    margin-top: -0.5vw;
+    text-align: center;
+  }
+  
+  #detail b {
+    color: cyan;
+    float: left;
+    margin-left: 0.6vw;
+  }
+  
+  #beerDetial {
+    font-family: century gothic;
+    margin-right: -2vw;
+  }
+
+  .img-beer {
+    width: 9.5vw;
+    height: 7.5vw;
+    margin-top: 0.8vw;
+    margin-left: 2vw;
+  }
+  .img-beers {
+    width: 9.5vw;
+    height:7.5vw;
+    margin-top: 0.8vw;
+    margin-left: -0.9vw;
+  }
+  
+  #beerDetails p {
+    font-size: 1vw;
+    color: white;
+  }
+  
+  #beerDetails b {
+    color: cyan;
+    float: left;
+  }
+  
+  #head b {
+    color: white;
+  }
+  #head >.col-sm-4 {
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 35vw;
+    min-height: 1px;
+  }
+  .icon-image6 {
+    border-radius: 50%;
+    width: 4vw;
+    height: 4vw;
+    margin-top:0.2vw;
+  }
+  
+  #heading6 p {
+    color: #c6c6c6;
+    font-family: century gothic;
+    float: left;
+    margin-top: 2px;
+    font-weight: normal;
+  }
+  
+  #heading6 h2 {
+    float: left;
+    color: #fff;
+    font-weight: bold;
+    width:20vw;
+    white-space: nowrap;
+  }
+
+  #dollar7 {
+    font-family: century gothic;
+    float: right;
+    color: #dac100;
+    font-weight: bold;
+    margin-left: -1vw
+  }
+  
+  #heading7 p {
+    color: #c6c6c6;
+    font-family: century gothic;
+    float: left;
+    margin-top: 1px;
+    font-weight: normal;
+  }
+  
+  .icon-image7 {
+    border-radius: 50%;
+    width: 4vw;
+    height: 4vw;    
+  }
+  
+  #heading7 h2 {
+    float: left;
+    color: #fff;
+    font-weight: bold;
+    width:20vw;
+  }
+  
+  #spans {
+    color: white;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  

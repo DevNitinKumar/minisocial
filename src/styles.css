@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+	
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+
+.background {
+    background-image: url('https://d3vhc53cl8e8km.cloudfront.net/hello-staging/wp-content/uploads/2017/11/17203140/moodchatapp.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
+
+body { 
+    margin: 0;
+    max-height: 660px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,58 @@
+.leftMsgContainer {
+    background-color: #c1c1c1;
+    width: fit-content;
+    float: left;
+    padding : 6px;
+    border-radius: 10px;
+}
+
+.leftMsgContainer > span {
+    font-size: 10px;
+    float: right;
+    margin-top: -15px;
+}
+
+.leftMsgContainer > p {
+    font-size: 14px;
+}
+
+.rightMsgContainer {
+    background-color: #cadab5;
+    width: fit-content;
+    float: right;
+    padding : 6px;
+    border-radius: 10px;
+}
+
+.rightMsgContainer > span {
+    font-size: 10px;
+    float: right;
+    margin-top: -15px;
+}
+
+.rightMsgContainer > p {
+    font-size: 14px;
+}
+
+.footer-div {
+    background-color: whitesmoke;
+    border-radius: 0px;
+    margin-top: 10px;
+    position: fixed;
+    bottom:150px;
+    width: 554px
+}
+
+.no-conversation {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #769a5f;
+    text-align: center;
+}
+
+.scroll-div {
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto
+}

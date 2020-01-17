@@ -1,0 +1,44 @@
+.signup-card {
+    max-width: 400px;
+    margin : auto;
+    margin-top : 100px;
+    min-height: 300px;
+}
+
+.signup-card:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+}
+
+.edit-heading {
+    text-align: center;
+    color : black;
+    margin-bottom: 10px;
+    margin-top: 100px;
+}
+  
+.example-header-image {
+    background-size: cover;
+    min-height: 100px;
+    min-width: 100px;
+    margin : auto;
+    margin-bottom: 10px;
+}
+
+.mat-card>:first-child {
+    margin-top: -20px;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.example-container > * {
+    width: 100%;
+}
+
+.mat-raised-button {
+    max-width: 100px;
+    margin-left : 255px;
+    margin-top : 20px;
+}

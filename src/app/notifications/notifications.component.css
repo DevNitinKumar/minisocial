@@ -1,0 +1,25 @@
+.example-card {
+    min-height: 200px;
+    background-color : aliceblue;
+    margin-top: 65px;
+}
+
+.userImage {
+    max-width: 200px;
+    border-radius: 50%;
+    margin: auto;
+    margin-left: 690px;
+}
+
+.disabled-Icon{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.msg-read {
+    color : blue;
+}
+
+.notification-box:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.14)
+}

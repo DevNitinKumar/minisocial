@@ -1,0 +1,29 @@
+<app-header></app-header>
+<mat-card class="example-card">
+    <div class="userImage">
+        <img *ngIf="userData?.profileImage !== ''" mat-card-image src="http://localhost:3800/{{userData?.profileImage}}" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <img *ngIf="userData?.profileImage === ''" mat-card-image src="../../assets/img/default-profile-image.jpg" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <h2 style="margin-left : 0px">Hello, {{ userData?.username | titlecase }}</h2>
+    </div>
+</mat-card>
+
+<div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col-sm-3" style="margin-right: 50px;">
+            <app-sidemenu></app-sidemenu>
+        </div>
+        <div class="col-sm-8">
+            <div class="container" *ngIf="allNotifications?.length !== 0">
+                <mat-card *ngFor="let notification of allNotifications;let i=index" [ngStyle]="i !== 0 ? {'margin-top': '10px'} : ''" class="notification-box">
+                    <span [ngClass]="notification.isRead ? 'disabled-Icon' : ''">{{ notification?.message | titlecase }}</span>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" [ngClass]="notification.isRead ? 'disabled-Icon' : ''" style="float:right">remove_red_eye</mat-icon><br/><br/>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" [ngClass]="notification.isRead ? 'disabled-Icon' : ''" (click)="markNotification(notification?._id)" style="cursor:pointer;color: green;">check_circle_outline</mat-icon>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="deleteNotification(notification?._id)" style="cursor:pointer;margin-left: 15px;color: red;">delete_outline</mat-icon>
+                </mat-card>
+            </div>
+            <div class="container" *ngIf="allNotifications?.length === 0">
+                <p style="color: black;font-size: 17px;font-weight: 500;">No Notification available</p>
+            </div>
+        </div>
+    </div>
+</div>

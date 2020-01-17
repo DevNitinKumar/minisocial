@@ -1,0 +1,52 @@
+<app-header (OnlineUsers)="onlineUsersList($event)"></app-header>
+<mat-card class="example-card">
+    <div class="userImage">
+        <img *ngIf="userData?.profileImage !== ''" mat-card-image src="http://localhost:3800/{{userData?.profileImage}}" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <img *ngIf="userData?.profileImage === ''" mat-card-image src="../../assets/img/default-profile-image.jpg" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <h2 style="margin-left : 0px">Hello, {{ userData?.username | titlecase }}</h2>
+    </div>
+</mat-card>
+
+<mat-form-field appearance="legacy" style="float: right;margin-right: 30px;">
+    <input matInput placeholder="Search" (keyup)="searchPeople()" [(ngModel)]="textSearch" [ngModelOptions]="{standalone : true}">
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+
+<div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col-sm-3" style="margin-right: 50px;">
+            <app-sidemenu></app-sidemenu>
+        </div>
+        <div class="col-sm-8">
+            <div class="container">
+                <div class="row" *ngIf="allUsers?.length !== 0">
+                    <div class="col-sm-4" *ngFor="let user of allUsers">
+                        <div class="pmd-card pmd-card-default pmd-z-depth" style="max-width: 350px">
+                            <div class="pmd-card-media">
+                                <img *ngIf="user?.profileImage !== ''" class="img-responsive" width="213" height="150" src="http://localhost:3800/{{user?.profileImage}}">
+                                <img *ngIf="user?.profileImage === ''" class="img-responsive" width="213" height="150" src="../../assets/img/default-profile-image.jpg">
+                            </div>
+                            <div class="pmd-card-title">
+                                <h2 class="pmd-card-title-text" style="font-size: 16px">{{user?.username | titlecase}}
+                                    <mat-icon *ngIf="checkIfOnline(user?.username)" style="color: green;font-size: 12px;margin-right: -10px;margin-top: 0px;">brightness_1</mat-icon>
+                                </h2>
+                                <span class="pmd-card-subtitle-text">{{user.address | titlecase}}</span>
+                            </div>
+                            <div class="pmd-card-actions">
+                                <button class="btn btn-sm pmd-btn-raised pmd-ripple-effect btn-info" type="button" *ngIf="!checkInArray(userArr,user?._id)" (click)="followUser(user)">FOLLOW</button>
+                                <button class="btn btn-sm pmd-btn-raised pmd-ripple-effect btn-disabled" type="button" disabled *ngIf="checkInArray(userArr,user?._id)" (click)="followUser(user)">FOLLOWING</button>
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="openDialog(user?.username,onlineUsers)" style="margin-left: 5px;float: right;margin-right: 8px;margin-top: 3px;">comment</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="allUsers?.length === 0 && !noResult">
+                    <p style="color: black;font-size: 17px;font-weight: 500;">No user available to follow.</p>
+                </div>
+                <div class="row" *ngIf="allUsers?.length === 0 && noResult">
+                    <p style="color: black;font-size: 17px;font-weight: 500;">No Result Found!!</p>
+                </div>
+            </div>            
+        </div>            
+    </div>
+</div>

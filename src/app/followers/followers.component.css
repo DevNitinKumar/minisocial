@@ -1,0 +1,12 @@
+.example-card {
+    min-height: 200px;
+    background-color : aliceblue;
+    margin-top: 65px;
+}
+
+.userImage {
+    max-width: 200px;
+    border-radius: 50%;
+    margin: auto;
+    margin-left: 690px;
+}

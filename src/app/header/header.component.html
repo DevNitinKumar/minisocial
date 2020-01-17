@@ -1,0 +1,92 @@
+<mat-toolbar color="primary" class="mainHeader">
+  <span>
+      <a routerLink="/" class="appLogo">CHATAPP</a>        
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li style="margin-top: 27px;margin-right: 15px;">
+      <p>
+        <mat-icon *ngIf="count.length !== 0" matBadge="{{count.length}}" matBadgeColor="warn" [matMenuTriggerFor]="beforeMenu" #menuTrigger="matMenuTrigger" (click)="menuTrigger.openMenu()" style="margin-right: 12px;" class="notification-div">public</mat-icon>
+        <mat-icon  *ngIf="count.length === 0" [matMenuTriggerFor]="beforeMenu" #menuTrigger="matMenuTrigger" (click)="menuTrigger.openMenu()" style="margin-right: 12px;" class="notification-div">public</mat-icon>
+      </p>
+      <mat-menu #beforeMenu="matMenu"  xPosition="before" style="min-width: 350px;max-width:350px;overflow: scroll;max-height: 400px;overflow-x: hidden;margin-top:10px">
+        <span *ngIf="allNotifications?.length !== 0">
+          <div *ngFor="let notifications of allNotifications; let i=index;" [ngClass]="notifications.isRead ? 'disabled-Icon' : ''" [ngStyle]="i === 0 ? {'margin-top': '5px'} : ''" style="padding:1px;">
+            <div class="container notification-div">
+              <div class="row">
+                <div class="col-sm-3">
+                  <img *ngIf="notifications?.senderId?.profileImage !== ''" style="border-radius: 50%" src="http://localhost:3800/{{notifications?.senderId?.profileImage}}" height="50" width="50" />
+                  <img *ngIf="notifications?.senderId?.profileImage === ''" style="border-radius: 50%" src="../../assets/img/default-profile-image.jpg" height="50" width="50" />
+                </div>
+                <div class="col-sm-9">
+                  <p style="font-size: 12px;">{{ notifications?.message | titlecase | truncate }}</p>
+                  <p style="font-size: 10px;margin-top: -14px;color: black;font-weight: 700;">{{ notifications?.createdAt | formatDate }}</p>
+                </div>
+              </div>
+            </div>
+            <hr style="border: 0.5px solid #e4d8d8;opacity: 0.2;margin-top:5px" />
+          </div>
+          <div style="float: right;margin-top: -10px;">
+            <button mat-button color="accent"  [ngClass]="count.length === 0 ? 'disabled-Icon' : ''" (click)="markAllAsRead()">Mark all as Read</button>
+          </div>
+        </span>
+        <span *ngIf="allNotifications?.length === 0" style="padding-left:10px">
+            <div class="container">
+              <div class="row">
+                  <div class="col-sm-12">
+                    <p style="font-size:15px">No Notification Available</p>
+                  </div>
+              </div>
+            </div>
+        </span>
+      </mat-menu>
+    </li>
+    <li style="margin-top: 27px;margin-right: 15px;">
+      <p>
+        <mat-icon *ngIf="msgNumber !== 0" matBadge="{{msgNumber}}" matBadgeColor="warn" [matMenuTriggerFor]="beforeMenu1" #menuTrigger1="matMenuTrigger" (click)="menuTrigger1.openMenu()">notifications_active</mat-icon>
+        <mat-icon  *ngIf="msgNumber === 0" [matMenuTriggerFor]="beforeMenu1" #menuTrigger1="matMenuTrigger" (click)="menuTrigger1.openMenu()">notifications_active</mat-icon>
+      </p>
+      <mat-menu #beforeMenu1="matMenu" xPosition="before" style="max-width:350px;overflow: scroll;max-height: 400px;overflow-x: hidden;margin-top:10px">
+        <span *ngIf="chatList?.length !== 0">
+          <div *ngFor="let chat of chatList; let i=index;" 
+          [ngClass]="!chat?.msgId?.message[chat?.msgId?.message.length - 1].isRead && chat?.receiverId?.username !==  chat?.msgId?.message[chat?.msgId?.message.length - 1].receiverName ? '' : 'disabled-Icon'" style="padding:1px;">
+            <div class="container">
+              <div class="row" (click)="openChatDialog(chat?.receiverId?.username)">
+                <div class="col-sm-3">
+                  <img *ngIf="chat?.receiverId?.profileImage !== ''" style="border-radius: 50%" src="http://localhost:3800/{{chat?.receiverId?.profileImage}}" height="40" width="40" />
+                  <img *ngIf="chat?.receiverId?.profileImage === ''" style="border-radius: 50%" src="../../assets/img/default-profile-image.jpg" height="40" width="40" />
+                </div>
+                <div class="col-sm-9">
+                  <p style="font-size: 12px;">{{ chat?.msgId?.message[chat?.msgId?.message.length - 1].body | titlecase | truncate }}</p>
+                  <p style="font-size: 10px;margin-top: -14px;color: black;font-weight: 700;">{{ chat?.msgId?.message[chat?.msgId?.message.length - 1].createdAt | formatDate }}</p>
+                </div>
+              </div>
+            </div>
+            <hr style="border: 0.5px solid #e4d8d8;opacity: 0.2;margin-top:5px" />
+          </div>
+          <div style="float: right;margin-top: -10px;">
+            <button mat-button color="accent" [ngClass]="msgNumber === 0 ? 'disabled-Icon' : ''" (click)="markAllMsgsAsRead()">Mark all as Read</button>
+          </div>
+        </span>
+        <span *ngIf="chatList?.length === 0" style="padding-left:10px">
+            <div class="container">
+              <div class="row">
+                  <div class="col-sm-12">
+                    <p style="font-size:15px;text-align: center;">No Notification Available</p>
+                  </div>
+              </div>
+            </div>
+        </span>
+      </mat-menu>
+    </li>
+    <li style="margin-top: 20px;">
+      <a mat-button color="accent" routerLink="/profile" style="text-decoration: none">My Profile</a>
+    </li>
+    <li style="margin-top: 20px;">
+      <a mat-button color="accent" routerLink="" style="text-decoration: none">Settings</a>
+    </li>
+    <li style="margin-top: 20px;">
+      <a mat-button color="accent" (click)="logoutUser()" style="text-decoration: none">Logout</a>
+    </li>
+  </ul> 
+</mat-toolbar>

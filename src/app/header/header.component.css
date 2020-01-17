@@ -1,0 +1,47 @@
+.mainHeader { 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%  !important;
+}
+
+.appLogo:hover {
+    color: white;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    margin : 0;
+    padding : 0;
+    display: flex;
+}
+
+a {
+    color : white;
+    text-decoration: none;
+}
+
+.spacer {
+    flex : 1 1 auto;
+}
+
+.disabled-Icon{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.msg-read {
+    color : blue;
+}
+
+.mat-menu-panel {
+    min-width: 300px !important;
+    max-width: 300px !important;
+}
+/* 
+.notification-div:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.14)
+}  
+*/

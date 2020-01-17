@@ -1,0 +1,98 @@
+.example-container {
+    height: 200px;
+    margin: 10px;
+    border: 1px solid #555;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#newPostContainer { 
+    border: 1px solid #f3eaea;
+    padding: 10px;
+    width: 600px;
+}
+
+#newPostContainer { 
+    box-shadow: 0 14px 28px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.12)
+}
+
+.example-form {
+    min-width: 150px;
+    width: 100%;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+
+.postCard {
+    max-width: 600px;    
+}
+
+.postCard:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+}
+  
+.userImageIcon {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRalHuiqMnQg3P_naf_6nK1IeDjp3WG5GTwTC2NXlsNKluehzES');
+    background-size: cover;
+}
+
+.postImage { 
+    margin: auto;
+    height: 50%;
+    width: 50%;
+    align-items: center;
+    margin-left: 135px;
+}
+
+.header img {
+    float: left;
+    width: 50px;
+    height: 50px;
+    background: #555;
+  }
+  
+.header p {
+    position: relative;
+    top: 0;
+    left: 10px;
+}
+
+.list-group-item:hover {
+    transform: scale(1.1);
+}
+
+.pmd-card:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.12)
+}
+
+.showPost:hover { 
+    box-shadow: 0 14px 28px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.12)
+}
+
+.mat-icon {
+    font-size: 18px;
+    padding-right: 4px;
+    padding-top: 4px;
+}
+
+.notLiked {
+    margin-left : 15px;
+    color:#927f7f;
+    cursor:pointer
+}
+
+.Liked {
+    margin-left : 15px;
+    color:red!important;
+    cursor:pointer
+}
+
+agm-map {
+	height: 150px;
+}

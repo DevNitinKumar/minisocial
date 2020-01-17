@@ -1,0 +1,29 @@
+<!-- <div class="row" style="background-size: cover; position:fixed !important;
+  position:absolute;top:0; right:0; bottom:0;left:0;background-image:url('../assets/img/bk1.jpg')"> -->
+<div class="row" style="background-size: cover; position:fixed !important;
+  position:absolute;top:0; right:0; bottom:0;left:0;background-color:black">
+    <div class="wood">
+      <h3 style="margin-top:15px">BEER MENU</h3>
+    </div>
+      <div class="col-sm-5" style="margin-left: 60px">
+        <div *ngFor="let number of [1,2,3,4,5,6,7,8,9]">
+          <h3 style="font-weight: 700" [style.color]="number % 2 === 0 ? '#6d3f45' : (number % 3 === 0 ? '#267e96' : '#c59456')">Actual Fat Julian</h3>
+          <p style="color:white;font-size: 11px;font-weight: 800">Imperior Scout &bull; 10% ABV</p>
+          <span style="color:white;margin-top:-50px;float:right">
+            <p>14oz <span>&nbsp;<b>$45.50</b></span></p>            
+          </span>
+          <hr style="border-color: white;opacity: 0.2;" />
+        </div>
+      </div>
+      <!-- <div class="col-sm-2"></div> -->
+      <div class="col-sm-5" style="margin-left: 120px">
+        <div *ngFor="let number of [1,2,3,4,5,6,7,8,9]">
+          <h3 style="font-weight: 700" [style.color]="number % 2 === 0 ? '#6d3f45' : (number %3 === 0 ? '#267e96' : '#c59456')">Actual Fat Julian</h3>
+          <p style="color:white;font-size: 11px;font-weight: 800">Imperior Scout &bull; 10% ABV</p>
+          <span style="color:white;margin-top:-50px;float:right">
+            <p>14oz <span>&nbsp;<b>$45.50</b></span></p>            
+          </span>
+          <hr style="border-color: white;opacity: 0.2;" />
+        </div>
+      </div>
+</div>

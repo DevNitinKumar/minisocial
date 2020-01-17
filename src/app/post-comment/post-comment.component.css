@@ -1,0 +1,25 @@
+.post-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-form {
+    min-width: 150px;
+    width: 100%;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+.commentShowDiv {
+    margin-top: 30px;
+    border: 2px solid #fbf8f8;
+    padding: 10px;
+}
+
+.commentShowDiv:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.10), 0 10px 10px rgba(0,0,0,0.12)
+}
+
+

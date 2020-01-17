@@ -1,0 +1,123 @@
+<div class="container" style="margin-top:50px">
+  <div class="row">
+    <div class="col-sm-3">
+      <app-sidemenu></app-sidemenu>     
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      <div class="post-container" id="newPostContainer">
+        <form class="example-form" #form="ngForm" [formGroup]="addPostForm" (submit)="addNewPost()" enctype="multipart/form-data">
+          <mat-error *ngIf="error">
+            {{errorMsg}}
+          </mat-error>
+          <h2>Add New Post</h2>
+          <mat-form-field class="example-full-width">
+            <textarea matInput rows="5" cols="40" placeholder="Message" formControlName="postMsg"></textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="search for location" [(ngModel)]="userLocation" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+            #search formControlName="searchControl">
+          </mat-form-field>
+          <div style="margin-top:20px">
+            <img [src]="showImage" alt="post image" *ngIf="showImage !== '' && showImage" width="200px" height="170px"/><br/><br/>
+            <button type="button" mat-raised-button (click)="fileInput.click()" style="width: 30%;margin-bottom:10px;margin-left: 14px;">Choose File</button>
+            <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">  
+          </div>
+          <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" style=" height: 100px;">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+          </agm-map> -->
+          <button mat-raised-button color="primary" style="float: right;">POST</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngFor="let post of allPosts;let i=index;">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8" style="margin-bottom : 50px">
+      <div class="header" style="margin-top: 40px">
+        <img *ngIf="post?.user?.profileImage !== ''" src="http://localhost:3800/{{post?.user?.profileImage}}" height="50" width="50" style="border-radius: 50%" />
+        <img *ngIf="post?.user?.profileImage === ''" src="../../assets/img/default-profile-image.jpg" height="50" width="50" style="border-radius: 50%" />
+        <p>{{post?.user?.username}}</p>
+        <p style="font-size: 12px;top:-10px">{{ post?.createdAt | formatDate }}</p>
+      </div>
+      <mat-card class="postCard">
+        <img mat-card-image src="http://localhost:3800/{{post?.postImage}}" alt="Post Image" class="postImage" *ngIf="post?.postImage !== ''">
+        <mat-card-content>
+          <p>
+            {{post?.postMsg}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <span (click)="likeThePost(post,currentUserData?.username,i)">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" id="likeIcon_{{i}}" [ngClass]="(!checkLikesInArray(post?.likedBy,currentUserData?.username)) ? 'notLiked' : 'Liked'">favorite</mat-icon>
+          </span>
+          <span>
+            <!-- <button data-target="#pmd-complete-dialog" data-toggle="modal" class="btn pmd-ripple-effect btn-primary pmd-btn-raised" type="button">Alert with title bar</button> -->
+            <mat-icon aria-hidden="false" aria-label="Example home icon" style="margin-left : 5px">share</mat-icon>
+          </span>
+          <mat-icon aria-hidden="false" (click)="openDialog(post,currentUserData?.username)" aria-label="Example home icon" style="margin-left : 5px">comment</mat-icon>
+        </mat-card-actions>
+      </mat-card>
+    </div>    
+  </div>   
+</div>
+  <!-- <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8" style="margin-bottom : 80px;">
+      <div class="header" style="margin-top: 40px">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRalHuiqMnQg3P_naf_6nK1IeDjp3WG5GTwTC2NXlsNKluehzES" height="50" width="50" style="border-radius: 50%" />
+        <p>Demo User</p>
+        <p style="font-size: 12px;top:-10px">Added a few moments ago</p>
+      </div> 
+
+      <div class="card pmd-card"  class="showPost" style="width: 600px;font-family: none;">	
+        <div class="pmd-card-media">
+          <img mat-card-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png" alt="Photo of a Shiba Inu" class="postImage">
+        </div>
+        
+        <div class="card-body">
+            <h2 class="card-title">Title goes here</h2>
+            <p class="card-subtitle mb-3">Secondary text</p>
+            <p class="card-text">Cards provide context and an entry point to more robust information and views. Don't overload cards with extraneous information or actions.</p>
+        </div>
+        
+        <div class="card-footer">
+            <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>
+            <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>
+            <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
+        </div>
+      </div>
+    </div>    
+  </div> -->
+
+<div tabindex="-1" class="modal pmd-modal fade" id="pmd-complete-dialog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h2 class="modal-title">Use Google's location service?</h2>
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <p>Let Google help apps determine location. This means sending anonymous location data to Google, even when no
+          apps are running. </p>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer pmd-modal-border text-right">
+        <!-- <button data-dismiss="modal" class="btn pmd-btn-flat pmd-ripple-effect btn-dark" type="button">Cancel</button> -->
+        <button data-dismiss="modal" type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-primary">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
