@@ -1,4 +1,4 @@
-const Constants = require("../data/Constants");
+const Constants = require("../data/constants");
 const Middleware = require("../data/middlewares/common-functions");
 const Message = require("../data/message.model");
 const Users = require("../data/users.model");
