@@ -9,8 +9,8 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.ts",
-    "./node_modules/angular2-emoji-picker/lib-dist/**/*.ts"
+    "src/**/*.ts"
+    // "./node_modules/angular2-emoji-picker/lib-dist/**/*.ts"
   ],
   "exclude": [
     "src/test.ts",
