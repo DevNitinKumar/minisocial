@@ -81,12 +81,9 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // app.use("/",express.static(path.join(__dirname,"chatApp")));
 
 
-app.get('/',function(req,res) {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-})
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'An'));
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 
