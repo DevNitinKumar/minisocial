@@ -4,7 +4,7 @@ var dburl 	 = 'mongodb+srv://NitinKumar:mongo@Nitin@minicluster-rr1b0.mongodb.ne
 
 mongoose.Promise = global.Promise;
 //mongoose.Promise = require('bluebird');
-mongoose.connect(dburl,{useNewUrlParser: true});
+mongoose.connect(dburl,{ useUnifiedTopology: true,useNewUrlParser: true});
 
 mongoose.connection.on('connected', function() {
 	console.log("mongoose connected to "+ dburl);
