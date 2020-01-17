@@ -51,7 +51,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { TruncatePipe } from './services/turncatePipe';
 import { ChatComponent } from './chat/chat.component';
 import { NgxAutoScrollModule } from 'ngx-auto-scroll';
-import { EmojiPickerModule } from 'angular2-emoji-picker';
+// import { EmojiPickerModule } from 'angular2-emoji-picker';
 import { AgmCoreModule } from '@agm/core';
 import { MapsService } from './services/map.service';
 import {WebcamModule} from 'ngx-webcam';
@@ -118,7 +118,7 @@ const appRoutes: Routes = [
       // apiKey : 'AIzaSyAQoW8KzASlmvBTEXzBm9Ki7bTx6eotR5Q'
       apiKey : 'AIzaSyB_G7ern6dzWvSUGnVtT2shOG98xXqpZbQ', libraries: ['places']
     }),
-    EmojiPickerModule.forRoot(),
+    // EmojiPickerModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
