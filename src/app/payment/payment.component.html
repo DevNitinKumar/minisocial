@@ -42,7 +42,8 @@
         <input type="hidden" name="MOBILE_NO" value="{{ paymentData.paytmParams.MOBILE_NO }}">
         <input type="hidden" name="EMAIL" value="{{ paymentData.paytmParams.EMAIL }}">
         <input type="hidden" name="TXN_AMOUNT" value="{{ paymentData.paytmParams.TXN_AMOUNT }}">
-        <input type="hidden" name="CALLBACK_URL" value="http://localhost:3800/api/payment-success">
+        <!-- <input type="hidden" name="CALLBACK_URL" value="http://localhost:3800/api/payment-success"> -->
+        <input type="hidden" name="CALLBACK_URL" value="https://minisocialmedia.herokuapp.com/api/payment-success">
         <input type="hidden" name="CHECKSUMHASH" value="{{ paymentData.data.checksum }}">
     </form>
     <!-- <script type="text/javascript">document.paytm_form.submit();</script> -->
