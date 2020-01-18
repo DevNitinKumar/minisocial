@@ -40,13 +40,13 @@
     </div>
     <div class="col-sm-8" style="margin-bottom : 50px">
       <div class="header" style="margin-top: 40px">
-        <img *ngIf="post?.user?.profileImage !== ''" src="http://localhost:3800/{{post?.user?.profileImage}}" height="50" width="50" style="border-radius: 50%" />
+        <img *ngIf="post?.user?.profileImage !== ''" src="https://minisocialmedia.herokuapp.com/{{post?.user?.profileImage}}" height="50" width="50" style="border-radius: 50%" />
         <img *ngIf="post?.user?.profileImage === ''" src="../../assets/img/default-profile-image.jpg" height="50" width="50" style="border-radius: 50%" />
         <p>{{post?.user?.username}}</p>
         <p style="font-size: 12px;top:-10px">{{ post?.createdAt | formatDate }}</p>
       </div>
       <mat-card class="postCard">
-        <img mat-card-image src="http://localhost:3800/{{post?.postImage}}" alt="Post Image" class="postImage" *ngIf="post?.postImage !== ''">
+        <img mat-card-image src="https://minisocialmedia.herokuapp.com/{{post?.postImage}}" alt="Post Image" class="postImage" *ngIf="post?.postImage !== ''">
         <mat-card-content>
           <p>
             {{post?.postMsg}}
