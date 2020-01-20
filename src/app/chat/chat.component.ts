@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, AfterViewInit, OnChanges, Input, SimpleChang
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { HttpService } from '../services/http.service';
 import io from 'socket.io-client';
-import { CaretEvent, EmojiEvent, EmojiPickerOptions } from 'ngx-emoji-picker';
+import { CaretEvent, EmojiEvent } from 'ngx-emoji-picker';
 import * as _ from 'lodash';
 
 @Component({
