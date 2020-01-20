@@ -60,22 +60,14 @@
                     <mat-hint align="end">{{msg.value.length}} / 256</mat-hint>
                 </mat-form-field>
             </div>
-            <!-- <div class="col-sm-1" style="margin-top: 30px;">
-                <p (click)="toggled = !toggled">😄</p>
-                <div class="emoji-content-editable"
-                    (emojiPickerCaretEmitter)="handleCurrentCaret($event)"
-                    (input)="content = $event.target.textContent"
-                    [textContent]="content"
-                    contenteditable="true">
-                </div>
-                <i class="emoji-toggle-button"                    
+            <div class="col-sm-1" style="margin-top: 30px;">
+                <i class="emoji-toggle-button" 
+                    (click)="toggled = !toggled"                   
                     [(emojiPickerIf)]="toggled"
-                    [emojiPickerPreserveSelection]="false"
                     [emojiPickerDirection]="direction"
-                    [emojiPickerAutofocus]="true"
-                    (emojiPickerSelect)="handleSelection($event)">
+                    (emojiPickerSelect)="handleSelection($event)">😄
                 </i>
-            </div> -->
+            </div>
             <div class="col-sm-2" style="margin-top: 22px;">
                 <button mat-raised-button color="primary" style="float: right;" (click)="sendMessage(userData?._id,userData?.username,receiverData?._id,receiverData?.username)">SEND</button>                    
             </div>

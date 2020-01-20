@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, AfterViewInit, OnChanges, Input, SimpleChang
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { HttpService } from '../services/http.service';
 import io from 'socket.io-client';
-// import { CaretEvent, EmojiEvent, EmojiPickerOptions } from 'angular2-emoji-picker';
+import { CaretEvent, EmojiEvent, EmojiPickerOptions } from 'ngx-emoji-picker';
 import * as _ from 'lodash';
 
 @Component({
@@ -52,14 +52,10 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  // handleSelection(event: EmojiEvent) {
-  //   // tslint:disable-next-line: max-line-length
-  //   this.content = this.content.slice(0, this._lastCaretEvent.caretOffset) + event.char + this.content.slice(this._lastCaretEvent.caretOffset);
-  //   this.message = this.content;
-  //   this.content = ' ';
-  //   this.eventMock = JSON.stringify(event);
-
-  // }
+  
+  handleSelection(event: EmojiEvent) {
+    this.message += event.char;
+  }
 
   // handleCurrentCaret(event: CaretEvent) {
   //   this._lastCaretEvent = event;

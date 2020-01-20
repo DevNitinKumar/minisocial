@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start" : "MONGO_USER=NitinKumar MONGO_PASSWORD=mongo@Nitin MONGO_DEFAULT_DATABASE=chatapp node app.js",
+    "start": "MONGO_USER=NitinKumar MONGO_PASSWORD=mongo@Nitin MONGO_DEFAULT_DATABASE=chatapp node app.js",
     "start:dev": "ng serve",
     "test": "ng test",
     "lint": "ng lint",
@@ -49,6 +49,7 @@
     "ng-recaptcha": "^5.0.0",
     "ngx-auto-scroll": "^1.1.0",
     "ngx-captcha": "^7.0.0",
+    "ngx-emoji-picker": "0.0.2",
     "ngx-webcam": "^0.2.6",
     "nodemailer": "^6.3.1",
     "paypal-rest-sdk": "^1.8.1",
