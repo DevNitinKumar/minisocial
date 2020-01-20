@@ -16,6 +16,7 @@ export class EditProfileComponent implements OnInit {
   userImagePath: any;
   error: boolean;
   errorMsg: string;
+  disableBtn: boolean;
 
   constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -48,6 +49,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onFileSelected = (event) => {
+    this.disableBtn = true;
     const file = (event.target as HTMLInputElement).files[0];
     this.profileEditForm.patchValue({profileImage : file});
     this.profileEditForm.get('profileImage').updateValueAndValidity();
@@ -59,6 +61,7 @@ export class EditProfileComponent implements OnInit {
     const fd = new FormData();
     fd.append('file', this.profileEditForm.value.profileImage, this.profileEditForm.value.profileImage.name);
     this.httpService.imageUploadS3(fd).subscribe((res) => {
+      this.disableBtn = false;
       if (res.success === true) {
         this.profileEditForm.value.profileImage = res.data;
       } else {

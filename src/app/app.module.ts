@@ -61,6 +61,8 @@ import { PaytmPaymentSuccessComponent } from './paytm-payment-success/paytm-paym
 // tslint:disable-next-line: import-spacing
 import { NgOtpInputModule } from 'ng-otp-input';
 import { RecaptchaModule } from 'ng-recaptcha';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 const appRoutes: Routes = [
   { path : 'login', component : LoginComponent },
@@ -145,7 +147,8 @@ const appRoutes: Routes = [
     NgxAutoScrollModule,
     WebcamModule,
     NgOtpInputModule,
-    RecaptchaModule
+    RecaptchaModule,
+    MatProgressBarModule
   ],
   exports : [
     HeaderComponent

@@ -3,6 +3,7 @@
 <!-- Edit Profile -->
 <h2 class="edit-heading">EDIT YOUR PROFILE</h2>
 <mat-card class="signup-card" style="margin-bottom: 40px;margin-top: 40px;" *ngIf="!loader">
+  <mat-progress-bar mode="indeterminate" *ngIf="disableBtn"></mat-progress-bar>
   <div mat-card-avatar class="example-header-image" (click)="fileInput.click()" [ngStyle]="getImageStyle()" style="margin-top:10px">
     <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">  
   </div>
@@ -35,7 +36,7 @@
           Address is  <strong>required</strong>
         </mat-error>
       </mat-form-field> 
-      <button mat-raised-button color="primary">UPDATE</button>
+      <button mat-raised-button color="primary" [disabled]="disableBtn">UPDATE</button>
     </div>
   </form>
 </mat-card>

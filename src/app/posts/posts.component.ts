@@ -35,6 +35,7 @@ export class PostsComponent implements OnInit {
   @ViewChild('search', { static: false }) searchElementRef: ElementRef;
   locationData: { address: string; country: any; city: any; postalCode: any; businessLocation: { lat: any; lng: any; }; };
   userLocation: any = '';
+  disableBtn: boolean;
 
   constructor(private formBuilder: FormBuilder, private httpService: HttpService,
               public dialog: MatDialog , private map: MapsService, private mapsAPILoader: MapsAPILoader,
@@ -109,6 +110,7 @@ export class PostsComponent implements OnInit {
   }
 
   onFileSelected = (event) => {
+    this.disableBtn = true;
     const file = (event.target as HTMLInputElement).files[0];
     this.addPostForm.patchValue({postImage : file});
     this.addPostForm.get('postImage').updateValueAndValidity();
@@ -120,6 +122,7 @@ export class PostsComponent implements OnInit {
     const fd = new FormData();
     fd.append('file', this.addPostForm.value.postImage, this.addPostForm.value.postImage.name);
     this.httpService.imageUploadS3(fd).subscribe((res) => {
+      this.disableBtn = false;
       if (res.success === true) {
         this.userImagePath = res.data;
       } else {
