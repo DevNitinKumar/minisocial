@@ -58,7 +58,7 @@ export class EditProfileComponent implements OnInit {
     reader.readAsDataURL(file);
     const fd = new FormData();
     fd.append('file', this.profileEditForm.value.profileImage, this.profileEditForm.value.profileImage.name);
-    this.httpService.imageUpload(fd).subscribe((res) => {
+    this.httpService.imageUploadS3(fd).subscribe((res) => {
       if (res.success === true) {
         this.profileEditForm.value.profileImage = res.data;
       } else {

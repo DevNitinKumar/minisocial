@@ -13,7 +13,8 @@ export class AuthService {
   socket: any;
 
   constructor(private router: Router, private httpService: HttpService) {
-    this.socket = io("http://localhost:3800");
+    // this.socket = io("http://localhost:3800");
+    this.socket = io("https://minisocialmedia.herokuapp.com");
   }
 
   getToken() {
