@@ -27,6 +27,7 @@
     "@paypal/checkout-server-sdk": "^1.0.2",
     "@types/googlemaps": "^3.38.1",
     "angular2-emoji-picker": "^1.4.6",
+    "aws-sdk": "^2.606.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
