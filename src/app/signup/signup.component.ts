@@ -35,6 +35,7 @@ export class SignupComponent implements OnInit {
   verifyBtnDisable: boolean;
   downloadTimer: any;
   disableSbt:boolean = true;
+  fd: FormData;
 
   // tslint:disable-next-line: max-line-length
   constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router, private authService: AuthService) {
@@ -79,16 +80,8 @@ export class SignupComponent implements OnInit {
       this.showImage = reader.result as string;
     };
     reader.readAsDataURL(file);
-    const fd = new FormData();
-    fd.append('file', this.signupForm.value.profileImage, this.signupForm.value.profileImage.name);
-    this.httpService.imageUpload(fd).subscribe((res) => {
-      if (res.success === true) {
-        this.userImagePath = res.data;
-      } else {
-        this.error = true;
-        this.errorMsg = res.message;
-      }
-    });
+    this.fd = new FormData();
+    this.fd.append('file', this.signupForm.value.profileImage, this.signupForm.value.profileImage.name);    
   }
 
   getImageStyle = () => {
@@ -123,22 +116,46 @@ export class SignupComponent implements OnInit {
       password : this.signupForm.value.password,
       phone : this.signupForm.value.phone,
       address : this.signupForm.value.address,
-      profileImage : this.userImagePath,
+      profileImage : '',
       dob : this.signupForm.value.dob,
     };
 
-    this.httpService.sendOtpToUser(this.userData.phone).subscribe((result) => {
-      this.loader = false;
-      this.pwdNotMatched = false;
-      if (result.success) {
-        this.verifyScreen = true;
-        this.otpTimer();
-        this.otpRequestId = result.data;
-      } else {
-        this.error = true;
-        this.errorMsg = result.message;
-      }
-    });
+    if(this.fd !== undefined) {
+      this.httpService.imageUploadS3(this.fd).subscribe((res) => {
+        if (res.success === true) {
+          this.userData.profileImage = res.data;
+          this.httpService.sendOtpToUser(this.userData.phone).subscribe((result) => {
+            this.loader = false;
+            this.pwdNotMatched = false;
+            if (result.success) {
+              this.verifyScreen = true;
+              this.otpTimer();
+              this.otpRequestId = result.data;
+            } else {
+              this.error = true;
+              this.errorMsg = result.message;
+            }
+          });
+        } else {
+          this.loader = false;
+          this.error = true;
+          this.errorMsg = res.message;
+        }
+      });
+    } else {
+      this.httpService.sendOtpToUser(this.userData.phone).subscribe((result) => {
+        this.loader = false;
+        this.pwdNotMatched = false;
+        if (result.success) {
+          this.verifyScreen = true;
+          this.otpTimer();
+          this.otpRequestId = result.data;
+        } else {
+          this.error = true;
+          this.errorMsg = result.message;
+        }
+      });
+    }
   }
 
   otpTimer = () => {
@@ -157,8 +174,7 @@ export class SignupComponent implements OnInit {
   }
 
   resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response: ${captchaResponse}`);
-    const secretKey = '6LdwPdAUAAAAABexN3Xq0t_PHH7sNk74AqYVuwJt';
+    const secretKey = '6LeEts0UAAAAACyyqpH_WnGyq2606p16h9DAiYzX';
     this.httpService.verifyCaptcha(captchaResponse,secretKey).subscribe((res) => {
       if (res.success) {
         this.disableSbt = false;

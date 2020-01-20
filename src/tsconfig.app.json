@@ -9,7 +9,7 @@
     "test.ts",
     "**/*.spec.ts"
   ],
-  // "include": [
-  //   "./node_modules/angular2-emoji-picker/lib-dist/**/*.ts"
-  // ]
+  "include": [
+    "./node_modules/angular2-emoji-picker/lib-dist/**/*.ts"
+  ]
 }

@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit {
   public eventMock;
   public eventPosMock;
 
-  // public direction = Math.random() > 0.5 ? (Math.random() > 0.5 ? 'top' : 'bottom') : (Math.random() > 0.5 ? 'right' : 'left');
+  public direction = Math.random() > 0.5 ? (Math.random() > 0.5 ? 'top' : 'bottom') : (Math.random() > 0.5 ? 'right' : 'left');
   public toggled = false;
   public content = ' ';
 
@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit {
   isOnline: boolean;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any, private httpService: HttpService) {
-    this.socket = io('https://minisocialmedia.herokuapp.com:3800');
+    this.socket = io('http://localhost:3800');
   }
 
   ngOnInit() {

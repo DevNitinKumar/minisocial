@@ -3,6 +3,7 @@ const route = express.Router();
 const userController = require("../controllers/userController");
 const checkUserAuth = require("../data/middlewares/check-user");
 const request = require('request');
+const upload = require('../data/middlewares/file-uploading');
 /**
  * @swagger
  * /api/image_upload:
@@ -26,7 +27,16 @@ route.post("/image_upload",function(req,res) {
             return res.status(200).json({ status: 200, success: true, message: "image uploaded successfully", data: data })
         }
     })
-})
+});
+
+
+route.post("/image_upload_s3", upload.array('file', 1), (req, res) => {     
+    if(req.file === undefined) {
+        return res.status(200).json({ status: 200, success: false, message: "error in image uploading/only jpg & png images are allowed", data: null })
+    }else{
+        return res.status(200).json({ status: 200, success: true, message: "image uploaded successfully", data: req.file })
+    }   
+});
 
 
 /**

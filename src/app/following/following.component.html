@@ -2,7 +2,7 @@
 <mat-spinner style="margin:300px auto;" mode="indeterminate" *ngIf="loader"></mat-spinner>
 <mat-card class="example-card">
     <div class="userImage">
-        <img *ngIf="userData?.profileImage !== ''" mat-card-image src="http://localhost:3800/{{userData?.profileImage}}" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <img *ngIf="userData?.profileImage !== ''" mat-card-image src="https://chat-angular.s3.ap-south-1.amazonaws.com/{{userData?.profileImage}}" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
         <img *ngIf="userData?.profileImage === ''" mat-card-image src="../../assets/img/default-profile-image.jpg" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
         <h2 style="margin-left : 0px">Hello, {{ userData?.username | titlecase }}</h2>
     </div>
@@ -19,7 +19,7 @@
                     <div class="col-sm-4" *ngFor="let user of allFollowings">
                         <div class="pmd-card pmd-card-default pmd-z-depth" style="max-width: 350px">
                             <div class="pmd-card-media">
-                                <img *ngIf="user?.userFollowedId?.profileImage !== ''" class="img-responsive" width="213" height="150" src="http://localhost:3800/{{user?.userFollowedId?.profileImage}}">
+                                <img *ngIf="user?.userFollowedId?.profileImage !== ''" class="img-responsive" width="213" height="150" src="https://chat-angular.s3.ap-south-1.amazonaws.com/{{user?.userFollowedId?.profileImage}}">
                                 <img *ngIf="user?.userFollowedId?.profileImage === ''" class="img-responsive" width="213" height="150" src="../../assets/img/default-profile-image.jpg">
                             </div>
                             <div class="pmd-card-title">

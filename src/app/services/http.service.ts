@@ -16,6 +16,10 @@ export class HttpService {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.IMAGE_UPLOAD}`, image);
   }
 
+  imageUploadS3 = (image) => {
+    return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.IMAGE_UPLOAD_S3}`, image);
+  }
+
   verifyCaptcha = (resp, key) => {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.VERIFY_CAPTCHA}`, {key, resp});
   }
