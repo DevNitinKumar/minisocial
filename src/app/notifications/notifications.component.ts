@@ -15,7 +15,8 @@ export class NotificationsComponent implements OnInit {
   socket: any;
 
   constructor(private httpService: HttpService,private Header : HeaderComponent,private router : Router) {
-    this.socket = io('http://localhost:3800');
+    // this.socket = io('http://localhost:3800');
+    this.socket = io('https://minisocialmedia.herokuapp.com');
   }
 
   ngOnInit() {

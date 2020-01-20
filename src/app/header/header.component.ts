@@ -27,7 +27,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   onlineUsersList: any;
 
   constructor(private authService: AuthService, private httpService: HttpService, public dialog: MatDialog) {
-    this.socket = io('http://localhost:3800');
+    // this.socket = io('http://localhost:3800');
+    this.socket = io('https://minisocialmedia.herokuapp.com');
   }
 
   ngOnInit() {
