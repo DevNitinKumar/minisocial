@@ -30,13 +30,17 @@ route.post("/image_upload",function(req,res) {
 });
 
 
-route.post("/image_upload_s3", upload.array('file', 1), (req, res) => {     
-    if(req.file === undefined) {
-        return res.status(200).json({ status: 200, success: false, message: "error in image uploading/only jpg & png images are allowed", data: null })
-    }else{
-        return res.status(200).json({ status: 200, success: true, message: "image uploaded successfully", data: req.file })
-    }   
+
+route.post("/image_upload_cloudinary", (req, res) => {  
+    userController.imageUploadCloud(req,res,function(err,data) {
+        if(err) {
+            return res.status(200).json({ status: 200, success: false, message: err, data: null })
+        }else{
+            return res.status(200).json({ status: 200, success: true, message: "image uploaded successfully", data: data })
+        }
+    })  
 });
+
 
 
 /**

@@ -121,7 +121,7 @@ export class SignupComponent implements OnInit {
     };
 
     if(this.fd !== undefined) {
-      this.httpService.imageUploadS3(this.fd).subscribe((res) => {
+      this.httpService.imageUploadCloud(this.fd).subscribe((res) => {
         if (res.success === true) {
           this.userData.profileImage = res.data;
           this.httpService.sendOtpToUser(this.userData.phone).subscribe((result) => {

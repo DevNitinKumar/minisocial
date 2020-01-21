@@ -121,7 +121,7 @@ export class PostsComponent implements OnInit {
     reader.readAsDataURL(file);
     const fd = new FormData();
     fd.append('file', this.addPostForm.value.postImage, this.addPostForm.value.postImage.name);
-    this.httpService.imageUploadS3(fd).subscribe((res) => {
+    this.httpService.imageUploadCloud(fd).subscribe((res) => {
       this.disableBtn = false;
       if (res.success === true) {
         this.userImagePath = res.data;

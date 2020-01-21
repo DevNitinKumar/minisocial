@@ -8,6 +8,7 @@ const CommonFun = require("../data/middlewares/common-functions");
 const paypal = require('paypal-rest-sdk');
 const cheerio = require('cheerio');
 const url = require('url');
+const fs = require('fs');
 const checksum_lib = require('../data/paytm-payment/checksum/checksum');
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
@@ -25,7 +26,12 @@ const from = 'Nitin Kumar';
 const to = '917988580827';
 const text = 'Payment Successful';
 // hi-IN , en-IN
-
+let cloudinary = require('cloudinary').v2;
+cloudinary.config({ 
+    cloud_name: 'minisocial', 
+    api_key: '843155316276214', 
+    api_secret: 'egQz2RZQ20EjmSrV6CLF20Ifovo' 
+});
 
 exports.imageUpload = function (req, res, callback) {
     const MIME_TYPES_ALLOWED = {
@@ -60,8 +66,36 @@ exports.imageUpload = function (req, res, callback) {
 }
 
 
-exports.imageUploadS3 = function (req, res, callback) {
-    
+exports.imageUploadCloud = function (req, res, callback) {
+    const MIME_TYPES_ALLOWED = {
+        'image/png': 'png',
+        'image/jpeg': 'jpeg',
+        'image/jpg': 'jpg',
+        'image/gif': 'gif'
+    }
+    const storage = multer.diskStorage({
+        destination: (req, file, cb) => {
+            if (!MIME_TYPES_ALLOWED[file.mimetype]) {
+                return callback(Constants.IMAGE_TYPES_ALLOWED)
+            }
+            cb(null,'./Backend/data/uploads');
+        }
+    })
+    const upload = multer({ storage: storage }).single('file');
+    upload(req, res, (err) => {
+        if (err) {
+            console.log(err)
+            return callback(Constants.IMAGE_UPLOADING_ERROR);
+        }
+        cloudinary.uploader.upload(req.file.path, {quality: 50}, function(error, result) {
+            if(error) {
+                console.log(error);
+                return callback(Constants.IMAGE_UPLOADING_ERROR);
+            }
+            Middleware.deleteImageFromLocall(req.file.filename);
+            return callback(null, result.url);
+        });
+    })   
 }
 
 

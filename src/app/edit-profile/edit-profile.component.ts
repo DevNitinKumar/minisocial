@@ -60,13 +60,15 @@ export class EditProfileComponent implements OnInit {
     reader.readAsDataURL(file);
     const fd = new FormData();
     fd.append('file', this.profileEditForm.value.profileImage, this.profileEditForm.value.profileImage.name);
-    this.httpService.imageUploadS3(fd).subscribe((res) => {
+    this.httpService.imageUploadCloud(fd).subscribe((res) => {
       this.disableBtn = false;
       if (res.success === true) {
         this.profileEditForm.value.profileImage = res.data;
       } else {
         this.error = true;
         this.errorMsg = res.message;
+        this.showImage = '';
+        this.getImageStyle();
       }
     });
   }

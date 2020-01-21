@@ -15,7 +15,7 @@
             <div class="container notification-div">
               <div class="row">
                 <div class="col-sm-3">
-                  <img *ngIf="notifications?.senderId?.profileImage !== ''" style="border-radius: 50%" src="https://chat-angular.s3.ap-south-1.amazonaws.com/{{notifications?.senderId?.profileImage}}" height="50" width="50" />
+                  <img *ngIf="notifications?.senderId?.profileImage !== ''" style="border-radius: 50%" src="{{notifications?.senderId?.profileImage}}" height="50" width="50" />
                   <img *ngIf="notifications?.senderId?.profileImage === ''" style="border-radius: 50%" src="../../assets/img/default-profile-image.jpg" height="50" width="50" />
                 </div>
                 <div class="col-sm-9">
@@ -53,7 +53,7 @@
             <div class="container">
               <div class="row" (click)="openChatDialog(chat?.receiverId?.username)">
                 <div class="col-sm-3">
-                  <img *ngIf="chat?.receiverId?.profileImage !== ''" style="border-radius: 50%" src="https://chat-angular.s3.ap-south-1.amazonaws.com/{{chat?.receiverId?.profileImage}}" height="40" width="40" />
+                  <img *ngIf="chat?.receiverId?.profileImage !== ''" style="border-radius: 50%" src="{{chat?.receiverId?.profileImage}}" height="40" width="40" />
                   <img *ngIf="chat?.receiverId?.profileImage === ''" style="border-radius: 50%" src="../../assets/img/default-profile-image.jpg" height="40" width="40" />
                 </div>
                 <div class="col-sm-9">

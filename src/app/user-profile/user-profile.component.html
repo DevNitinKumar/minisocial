@@ -1,7 +1,7 @@
 <app-header></app-header>
 <mat-spinner style="margin:300px auto;" mode="indeterminate" *ngIf="loader"></mat-spinner>
 <div class="card" *ngIf="!loader">
-  <img  *ngIf="userData?.profileImage !== ''" src="https://chat-angular.s3.ap-south-1.amazonaws.com/{{ userData?.profileImage }}" alt="Profile Image" style="width:400px;height:250px">
+  <img  *ngIf="userData?.profileImage !== ''" src="{{ userData?.profileImage }}" alt="Profile Image" style="width:400px;height:250px">
   <img  *ngIf="userData?.profileImage === ''" src="../../assets/img/default-profile-image.jpg" alt="Profile Image" style="width:400px;height:250px">  
   <h1 style="margin-top: 10px">{{ userData?.username | titlecase }}</h1>
   <p class="title">{{ userData?.email }}</p>

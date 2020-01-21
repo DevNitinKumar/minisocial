@@ -30,3 +30,5 @@ module.exports.MSG_NOT_SENT = "error in sending message";
 module.exports.ERROR_IN_PAYTM_PAYMENT = "error in processing paytm payment";
 module.exports.CODE_NOT_MATCHED = "verification code not matched";
 module.exports.REQ_ID_NOT_FOUND = "request id not found";
+module.exports.FILE_DELETED = "file deleted successfully";
+module.exports.FILE_DELETION_ERROR = "error in deleting file locally";

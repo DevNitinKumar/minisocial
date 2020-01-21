@@ -1,7 +1,7 @@
 <app-header></app-header>
 <mat-card class="example-card">
     <div class="userImage">
-        <img *ngIf="userData?.profileImage !== ''" mat-card-image src="https://chat-angular.s3.ap-south-1.amazonaws.com/{{userData?.profileImage}}" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
+        <img *ngIf="userData?.profileImage !== ''" mat-card-image src="{{userData?.profileImage}}" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
         <img *ngIf="userData?.profileImage === ''" mat-card-image src="../../assets/img/default-profile-image.jpg" alt="profile image" style="margin-top: auto;border-radius: 50%;width:200px;height: 200px;">
         <h2 style="margin-left : 0px">Hello, {{ userData?.username | titlecase }}</h2>
     </div>
