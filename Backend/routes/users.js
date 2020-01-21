@@ -42,6 +42,16 @@ route.post("/image_upload_cloudinary", (req, res) => {
 });
 
 
+route.post("/user_signup_checks",function(req,res) {
+    userController.userSignupCheck(req.body,function(err,data) {
+        if(err) {
+            return res.status(200).json({ status: 200, success: false, message: err, data: null })
+        }else{
+            return res.status(200).json({ status: 200, success: true, message: "values checked successfully", data: null })
+        }
+    })
+})
+
 
 /**
  * @swagger

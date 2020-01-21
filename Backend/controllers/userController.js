@@ -99,8 +99,7 @@ exports.imageUploadCloud = function (req, res, callback) {
 }
 
 
-exports.userSignup = function (data, callback) {
-    // const url = req.protocol + "://" + req.get("host");
+exports.userSignupCheck = function (data, callback) {
     if (data.username === "" || data.email === "" || data.password === "") {
         return callback(Constants.FIELD_REQUIRED);
     }
@@ -109,6 +108,27 @@ exports.userSignup = function (data, callback) {
         return callback(Constants.EMAIL_FORMAT)
     }
 
+    Users.find({ 'email': data.email.toLowerCase().trim() }).countDocuments()  // email already exist check
+        .then((result) => {
+            if (result > 0) {
+                return callback(Constants.EMAIL_EXISTS)
+            }
+            Users.find({ 'username': data.username.toLowerCase().trim() }).countDocuments()  // username already exist check
+                .then((result) => {
+                    if (result > 0) {
+                        return callback(Constants.USERNAME_EXISTS)
+                    }  
+                    return callback(null,null);
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return callback(Constants.COMMON_ERROR_MESSAGE)
+                })
+        })
+}
+
+
+exports.userSignup = function (data, callback) {
     Users.find({ 'email': data.email.toLowerCase().trim() }).countDocuments()  // email already exist check
         .then((result) => {
             if (result > 0) {

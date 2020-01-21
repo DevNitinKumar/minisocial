@@ -16,6 +16,10 @@ export class HttpService {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.IMAGE_UPLOAD}`, image);
   }
 
+  checkUser = (data) => {
+    return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.USER_SIGNUP_CHECK}`, data);
+  }
+
   imageUploadCloud = (image) => {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.IMAGE_UPLOAD_CLOUD}`, image);
   }

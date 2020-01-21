@@ -120,10 +120,31 @@ export class SignupComponent implements OnInit {
       dob : this.signupForm.value.dob,
     };
 
-    if(this.fd !== undefined) {
-      this.httpService.imageUploadCloud(this.fd).subscribe((res) => {
-        if (res.success === true) {
-          this.userData.profileImage = res.data;
+    this.httpService.checkUser(this.userData).subscribe((resObj) => {
+      if (resObj.success) {
+        if (this.fd !== undefined) {
+          this.httpService.imageUploadCloud(this.fd).subscribe((res) => {
+            if (res.success === true) {
+              this.userData.profileImage = res.data;
+              this.httpService.sendOtpToUser(this.userData.phone).subscribe((result) => {
+                this.loader = false;
+                this.pwdNotMatched = false;
+                if (result.success) {
+                  this.verifyScreen = true;
+                  this.otpTimer();
+                  this.otpRequestId = result.data;
+                } else {
+                  this.error = true;
+                  this.errorMsg = result.message;
+                }
+              });
+            } else {
+              this.loader = false;
+              this.error = true;
+              this.errorMsg = res.message;
+            }
+          });
+        } else {
           this.httpService.sendOtpToUser(this.userData.phone).subscribe((result) => {
             this.loader = false;
             this.pwdNotMatched = false;
@@ -136,26 +157,14 @@ export class SignupComponent implements OnInit {
               this.errorMsg = result.message;
             }
           });
-        } else {
-          this.loader = false;
-          this.error = true;
-          this.errorMsg = res.message;
         }
-      });
-    } else {
-      this.httpService.sendOtpToUser(this.userData.phone).subscribe((result) => {
+      } else {
+        this.disableSbt = true;
         this.loader = false;
-        this.pwdNotMatched = false;
-        if (result.success) {
-          this.verifyScreen = true;
-          this.otpTimer();
-          this.otpRequestId = result.data;
-        } else {
-          this.error = true;
-          this.errorMsg = result.message;
-        }
-      });
-    }
+        this.error = true;
+        this.errorMsg = resObj.message;
+      }
+    });
   }
 
   otpTimer = () => {
