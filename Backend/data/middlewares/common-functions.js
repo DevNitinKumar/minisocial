@@ -33,7 +33,7 @@ module.exports.generatePassword = function(length) {
 
 //remove images from localFolder
 module.exports.deleteImageFromLocall = function (fileName) {
-    fs.unlink('./Backend/data/uploads/' + fileNameArray, function (err) {
+    fs.unlink('./Backend/data/uploads/' + fileName, function (err) {
         if (!err) {
             console.log(Constants.FILE_DELETED);
         } else {
