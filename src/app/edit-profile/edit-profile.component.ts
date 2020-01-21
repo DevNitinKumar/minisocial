@@ -17,6 +17,7 @@ export class EditProfileComponent implements OnInit {
   error: boolean;
   errorMsg: string;
   disableBtn: boolean;
+  userProfile: any;
 
   constructor(private httpService: HttpService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -44,6 +45,7 @@ export class EditProfileComponent implements OnInit {
           address : this.userData.address,
           profileImage : this.userData.profileImage
         });
+        this.userProfile = this.userData.profileImage;
       }
     });
   }
@@ -62,8 +64,8 @@ export class EditProfileComponent implements OnInit {
     fd.append('file', this.profileEditForm.value.profileImage, this.profileEditForm.value.profileImage.name);
     this.httpService.imageUploadCloud(fd).subscribe((res) => {
       this.disableBtn = false;
-      if (res.success === true) {
-        this.profileEditForm.value.profileImage = res.data;
+      if (res.success) {
+        this.userProfile = res.data;
       } else {
         this.error = true;
         this.errorMsg = res.message;
@@ -93,7 +95,7 @@ export class EditProfileComponent implements OnInit {
       email : this.profileEditForm.value.email,
       phone : this.profileEditForm.value.phone,
       address : this.profileEditForm.value.address,
-      profileImage : this.profileEditForm.value.profileImage
+      profileImage : this.userProfile
     };
     this.httpService.updateUserData(userData).subscribe((result) => {
       this.loader = false;
