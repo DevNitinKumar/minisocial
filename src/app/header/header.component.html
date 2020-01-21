@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="mainHeader">
   <span>
-      <a routerLink="/" class="appLogo">CHATAPP</a>        
+    <img src="../../assets/img/logo.png" (click)="openHome()" class="appLogo"/>       
   </span>
   <span class="spacer"></span>
   <ul>
@@ -80,13 +80,13 @@
       </mat-menu>
     </li>
     <li style="margin-top: 20px;">
-      <a mat-button color="accent" routerLink="/profile" style="text-decoration: none">My Profile</a>
+      <a mat-button color="accent" routerLink="/profile" style="text-decoration: none;color:#fff">My Profile</a>
     </li>
     <li style="margin-top: 20px;">
-      <a mat-button color="accent" routerLink="" style="text-decoration: none">Settings</a>
+      <a mat-button color="accent" routerLink="" style="text-decoration: none;color:#fff">Settings</a>
     </li>
     <li style="margin-top: 20px;">
-      <a mat-button color="accent" (click)="logoutUser()" style="text-decoration: none">Logout</a>
+      <a mat-button color="accent" (click)="logoutUser()" style="text-decoration: none;color:#fff">Logout</a>
     </li>
   </ul> 
 </mat-toolbar>

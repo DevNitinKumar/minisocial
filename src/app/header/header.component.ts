@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   msgNumber: any = 0;
   onlineUsersList: any;
 
-  constructor(private authService: AuthService, private httpService: HttpService, public dialog: MatDialog) {
+  constructor(private authService: AuthService,private router: Router, private httpService: HttpService, public dialog: MatDialog) {
     // this.socket = io('http://localhost:3800');
     this.socket = io('https://minisocialmedia.herokuapp.com');
   }
@@ -114,6 +114,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  openHome = () => {
+    this.router.navigate(['/dashboard']);
   }
 
 }

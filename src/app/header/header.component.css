@@ -6,9 +6,10 @@
     width: 100%  !important;
 }
 
-.appLogo:hover {
-    color: white;
-    text-decoration: none;
+.appLogo {
+    width: 136px;
+    height: 73px;
+    cursor: pointer;
 }
 
 ul {
@@ -40,8 +41,7 @@ a {
     min-width: 300px !important;
     max-width: 300px !important;
 }
-/* 
-.notification-div:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.14)
-}  
-*/
+
+.mat-toolbar-single-row {
+    height: 75px !important;
+}
