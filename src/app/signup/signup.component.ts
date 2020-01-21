@@ -198,7 +198,7 @@ export class SignupComponent implements OnInit {
         this.httpService.userSignup(this.userData).subscribe((res) => {
           this.loader = false;
           this.signupForm.reset();
-          if (res.success === true) {
+          if (res.success) {
             this.router.navigate(['/login']);
           } else {
             this.error = true;
