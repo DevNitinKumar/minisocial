@@ -1,42 +1,44 @@
 <app-header></app-header>
 <mat-spinner style="margin:300px auto;" mode="indeterminate" *ngIf="loader"></mat-spinner>
 <!-- Edit Profile -->
-<h2 class="edit-heading">EDIT YOUR PROFILE</h2>
-<mat-card class="signup-card" style="margin-bottom: 40px;margin-top: 40px;" *ngIf="!loader">
-  <mat-progress-bar mode="indeterminate" *ngIf="disableBtn"></mat-progress-bar>
-  <div mat-card-avatar class="example-header-image" (click)="fileInput.click()" [ngStyle]="getImageStyle()" style="margin-top:10px">
-    <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">  
-  </div>
-  <form class="example-form" [formGroup]="profileEditForm" (submit)="editUserProfile()" enctype="multipart/form-data">
-    <mat-error *ngIf="error">
-      {{errorMsg}}
-    </mat-error>
-    <div class="example-container">
-      <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username">
-        <mat-error>
-          username is <strong>required</strong>
-        </mat-error>
-      </mat-form-field> 
-      <mat-form-field>
-        <input matInput type="email" placeholder="Email" formControlName="email" readonly>
-        <mat-error>
-          please provide a proper <strong>email</strong> address
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="number" placeholder="Phone Number" formControlName="phone">
-        <mat-error>
-          phone no is  <strong>required</strong> having 10 <strong>digits</strong>
-        </mat-error>
-      </mat-form-field> 
-      <mat-form-field>
-        <input matInput type="text" placeholder="Address" formControlName="address">
-        <mat-error>
-          Address is  <strong>required</strong>
-        </mat-error>
-      </mat-form-field> 
-      <button mat-raised-button color="primary" [disabled]="disableBtn">UPDATE</button>
+<div *ngIf="!loader">
+  <h2 class="edit-heading">EDIT YOUR PROFILE</h2>
+  <mat-card class="signup-card" style="margin-bottom: 40px;margin-top: 40px;">
+    <mat-progress-bar mode="indeterminate" *ngIf="disableBtn"></mat-progress-bar>
+    <div mat-card-avatar class="example-header-image" (click)="fileInput.click()" [ngStyle]="getImageStyle()" style="margin-top:10px">
+      <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">  
     </div>
-  </form>
-</mat-card>
+    <form class="example-form" [formGroup]="profileEditForm" (submit)="editUserProfile()" enctype="multipart/form-data">
+      <mat-error *ngIf="error">
+        {{errorMsg}}
+      </mat-error>
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username">
+          <mat-error>
+            username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field> 
+        <mat-form-field>
+          <input matInput type="email" placeholder="Email" formControlName="email" readonly>
+          <mat-error>
+            please provide a proper <strong>email</strong> address
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Phone Number" formControlName="phone">
+          <mat-error>
+            phone no is  <strong>required</strong> having 10 <strong>digits</strong>
+          </mat-error>
+        </mat-form-field> 
+        <mat-form-field>
+          <input matInput type="text" placeholder="Address" formControlName="address">
+          <mat-error>
+            Address is  <strong>required</strong>
+          </mat-error>
+        </mat-form-field> 
+        <button mat-raised-button color="primary" [disabled]="disableBtn">UPDATE</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

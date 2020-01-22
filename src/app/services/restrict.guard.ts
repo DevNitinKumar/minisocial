@@ -4,7 +4,7 @@ import { AuthServiceMain } from './auth.service';
 
 @Injectable()
 export class Restrict implements CanActivate {
-  constructor(private AuthServiceMain: AuthServiceMain, private router: Router) { }
+  constructor(private authService: AuthServiceMain, private router: Router) { }
 
   canActivate() {
     if (localStorage.getItem('currentUser')) {

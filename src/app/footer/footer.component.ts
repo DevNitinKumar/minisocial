@@ -11,11 +11,11 @@ export class FooterComponent implements OnInit {
   authStatus$: Observable<boolean>;
   checkUser: boolean;
 
-  constructor(private AuthServiceMain: AuthServiceMain) { }
+  constructor(private authService: AuthServiceMain) { }
 
   ngOnInit() {
-    this.checkUser = this.AuthServiceMain.getIsAuth();
-    this.AuthServiceMain.authStatus.subscribe((res) => {
+    this.checkUser = this.authService.getIsAuth();
+    this.authService.authStatus.subscribe((res) => {
       this.checkUser = res;
     });
   }

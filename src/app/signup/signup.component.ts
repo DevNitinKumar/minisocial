@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
   fd: FormData;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router, private AuthServiceMain: AuthServiceMain) {
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router, private authService: AuthServiceMain) {
     this.signupForm = this.formBuilder.group({
       username : new FormControl('', [Validators.required]),
       email : new FormControl('', [Validators.required, Validators.email]),
@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit {
     };
     reader.readAsDataURL(file);
     this.fd = new FormData();
-    this.fd.append('file', this.signupForm.value.profileImage, this.signupForm.value.profileImage.name);    
+    this.fd.append('file', this.signupForm.value.profileImage, this.signupForm.value.profileImage.name);
   }
 
   getImageStyle = () => {
@@ -183,8 +183,7 @@ export class SignupComponent implements OnInit {
   }
 
   resolved(captchaResponse: string) {
-    // const secretKey = '6LeEts0UAAAAACyyqpH_WnGyq2606p16h9DAiYzX';
-    const secretKey = '6LdwPdAUAAAAABexN3Xq0t_PHH7sNk74AqYVuwJt';
+    const secretKey = '6LeEts0UAAAAACyyqpH_WnGyq2606p16h9DAiYzX';
     this.httpService.verifyCaptcha(captchaResponse,secretKey).subscribe((res) => {
       if (res.success) {
         this.disableSbt = false;
@@ -203,11 +202,13 @@ export class SignupComponent implements OnInit {
     this.error = false;
     this.errorMsg = '';
     this.httpService.verifyOTP(this.otpRequestId, this.otpByUser).subscribe((result) => {
+      console.log(result);
       if (result.success) {
         this.httpService.userSignup(this.userData).subscribe((res) => {
+          console.log(res);
           this.loader = false;
           this.signupForm.reset();
-          if (res.success) {
+          if (res.success === true) {
             this.router.navigate(['/login']);
           } else {
             this.error = true;

@@ -26,14 +26,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   msgNumber: any = 0;
   onlineUsersList: any;
 
-  constructor(private AuthServiceMain: AuthServiceMain,private router: Router, private httpService: HttpService, public dialog: MatDialog) {
-    // this.socket = io('http://localhost:3800');
+  constructor(private authService: AuthServiceMain,private router: Router, private httpService: HttpService, public dialog: MatDialog) {
     this.socket = io('https://minisocialmedia.herokuapp.com');
   }
 
   ngOnInit() {
-    // this.checkUser = this.AuthServiceMain.getIsAuth();
-    // this.AuthServiceMain.authStatus.subscribe((res) => {
+    // this.checkUser = this.authService.getIsAuth();
+    // this.authService.authStatus.subscribe((res) => {
     //   this.checkUser = res;
     // });
     this.getUserProfile();
@@ -57,7 +56,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     //   this.onlineUsersList = data;
     //   this.OnlineUsers.emit(data);
     // });
-    this.AuthServiceMain.logout();
+    this.authService.logout();
   }
 
   getUserProfile = () => {

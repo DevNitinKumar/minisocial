@@ -13,7 +13,6 @@ export class AuthServiceMain {
   socket: any;
 
   constructor(private router: Router, private httpService: HttpService) {
-    // this.socket = io("http://localhost:3800");
     this.socket = io("https://minisocialmedia.herokuapp.com");
   }
 
@@ -41,7 +40,6 @@ export class AuthServiceMain {
     }
   }
 
-
   loginMessage = (msg) => {
     console.log(msg);
     return msg;
@@ -49,7 +47,7 @@ export class AuthServiceMain {
 
   userLogin = (data) => {
     return this.httpService.userLogin(data).subscribe((res) => {
-      if (res.success === true) {
+      if (res.success) {
         localStorage.setItem('currentUser', JSON.stringify(res.data));
         this.isAuthenticated = true;
         this.authStatus.next(true);

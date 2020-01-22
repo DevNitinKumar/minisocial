@@ -28,11 +28,10 @@ export class ChatComponent implements OnInit {
   public content = ' ';
 
   // tslint:disable-next-line: variable-name
-  // public _lastCaretEvent: CaretEvent;
+  public _lastCaretEvent: CaretEvent;
   isOnline: boolean;
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: any, private httpService: HttpService) {
-    // this.socket = io('http://localhost:3800');
     this.socket = io('https://minisocialmedia.herokuapp.com');
   }
 
@@ -52,15 +51,14 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  
   handleSelection(event: EmojiEvent) {
     this.message += event.char;
   }
 
-  // handleCurrentCaret(event: CaretEvent) {
-  //   this._lastCaretEvent = event;
-  //   this.eventPosMock = `{ caretOffset : ${event.caretOffset}, caretRange: Range{...}, textContent: ${event.textContent} }`;
-  // }
+  handleCurrentCaret(event: CaretEvent) {
+    this._lastCaretEvent = event;
+    this.eventPosMock = `{ caretOffset : ${event.caretOffset}, caretRange: Range{...}, textContent: ${event.textContent} }`;
+  }
 
   getCurrentUserProfile = () => {
     this.httpService.getUserProfile().subscribe((res) => {

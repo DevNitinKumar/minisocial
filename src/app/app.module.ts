@@ -51,7 +51,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { TruncatePipe } from './services/turncatePipe';
 import { ChatComponent } from './chat/chat.component';
 import { NgxAutoScrollModule } from 'ngx-auto-scroll';
-import { NgxEmojiPickerModule } from 'ngx-emoji-picker';
+// import { EmojiPickerModule } from 'angular2-emoji-picker';
+import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
 import { AgmCoreModule } from '@agm/core';
 import { MapsService } from './services/map.service';
 import {WebcamModule} from 'ngx-webcam';
@@ -64,19 +65,21 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
-import { CONFIG } from './config';
 
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(CONFIG.KEY.CLIENTID)
+    provider: new GoogleLoginProvider('36814645377-rkvufq4l6j48rm8oaoriae1408137mtn.apps.googleusercontent.com')
   }
+  // {
+  //   id: FacebookLoginProvider.PROVIDER_ID,
+  //   provider: new FacebookLoginProvider("Facebook-App-Id")
+  // }
 ]);
 
 export function provideConfig() {
   return config;
 }
-
 
 const appRoutes: Routes = [
   { path : 'login', component : LoginComponent },
@@ -123,7 +126,7 @@ const appRoutes: Routes = [
     ChatComponent,
     PaymentComponent,
     PaymentSuccessComponent,
-    PaytmPaymentSuccessComponent
+    PaytmPaymentSuccessComponent    
   ],
   imports: [
     RouterModule.forRoot(
@@ -132,8 +135,9 @@ const appRoutes: Routes = [
     ),
     AgmCoreModule.forRoot({
       // apiKey : 'AIzaSyAQoW8KzASlmvBTEXzBm9Ki7bTx6eotR5Q'
-      apiKey : CONFIG.KEY.GOOGLE_MAP_KEY, libraries: ['places']
+      apiKey : 'AIzaSyB_G7ern6dzWvSUGnVtT2shOG98xXqpZbQ', libraries: ['places']
     }),
+    // EmojiPickerModule.forRoot(),
     NgxEmojiPickerModule.forRoot(),
     BrowserModule,
     FormsModule,

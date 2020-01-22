@@ -25,8 +25,7 @@ export class PeopleComponent implements OnInit {
   noResult: boolean;
 
   constructor(private httpService: HttpService, public dialog: MatDialog) {
-    // this.socket = io('http://localhost:3800');
-    this.socket = io('https://minisocialmedia.herokuapp.com');
+    this.socket = io('http://localhost:3800');
     const helper = new JwtHelperService();
     this.decodedToken = helper.decodeToken(localStorage.getItem('currentUser'));
   }

@@ -63,9 +63,11 @@ export class EditProfileComponent implements OnInit {
     const fd = new FormData();
     fd.append('file', this.profileEditForm.value.profileImage, this.profileEditForm.value.profileImage.name);
     this.httpService.imageUploadCloud(fd).subscribe((res) => {
+      console.log(res)
       this.disableBtn = false;
       if (res.success) {
         this.userProfile = res.data;
+        // this.profileEditForm.value.profileImage = res.data;
       } else {
         this.error = true;
         this.errorMsg = res.message;
@@ -76,7 +78,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   getImageStyle = () => {
-    console.log(this.showImage);
     const myStyles = {
       // tslint:disable-next-line: max-line-length
       // 'background-image': !this.showImage ? 'url(http://localhost:3800/' + this.userData.profileImage + ')' : 'url(' + this.showImage + ')'
@@ -86,6 +87,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   editUserProfile = () => {
+    // console.log(this.userProfile)
     if (!this.profileEditForm.valid) {
       return false;
     }

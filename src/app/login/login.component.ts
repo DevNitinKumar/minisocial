@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   errorMsg: any;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private formBuilder: FormBuilder, private socialAuthServiceMain: AuthService, private httpService: HttpService, private router: Router, private AuthServiceMain: AuthServiceMain) {
+  constructor(private formBuilder: FormBuilder, private socialAuthService: AuthService, private httpService: HttpService, private router: Router, private authService: AuthServiceMain) {
     this.loginForm = this.formBuilder.group({
       email : new FormControl('', [Validators.required, Validators.email]),
       password : new FormControl('', [Validators.required])
@@ -48,13 +48,13 @@ export class LoginComponent implements OnInit {
       email : this.loginForm.value.email,
       password : this.loginForm.value.password
     };
-    await this.AuthServiceMain.userLogin(userData);
+    await this.authService.userLogin(userData);
     this.loader = false;
   }
 
   public signinWithGoogle() {
     const socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    this.socialAuthServiceMain.signIn(socialPlatformProvider).then((userData) => {
+    this.socialAuthService.signIn(socialPlatformProvider).then((userData) => {
       console.log(userData);
       const data =  {
         googleId : userData.id,
@@ -71,10 +71,10 @@ export class LoginComponent implements OnInit {
         this.loader = false;
         if (res.success === true) {
           localStorage.setItem('currentUser', JSON.stringify(res.data));
-          this.AuthServiceMain.isAuthenticated = true;
-          this.AuthServiceMain.authStatus.next(true);
+          this.authService.isAuthenticated = true;
+          this.authService.authStatus.next(true);
           this.router.navigate(['../dashboard']);
-          this.AuthServiceMain.socket.emit('refresh',{});
+          this.authService.socket.emit('refresh',{});
         } else {
           this.error = true;
           this.errorMsg = res.message;

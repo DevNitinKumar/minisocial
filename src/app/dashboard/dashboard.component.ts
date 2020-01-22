@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit {
   socket: any; public seconds: number ;
   
   constructor(private httpService: HttpService) {
-    // this.socket = io('http://localhost:3800');
     this.socket = io('https://minisocialmedia.herokuapp.com');
   }
 

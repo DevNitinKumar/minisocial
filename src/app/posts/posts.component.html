@@ -6,8 +6,8 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
+      <mat-progress-bar mode="indeterminate" *ngIf="disableBtn" style="width: 82%;"></mat-progress-bar>
       <div class="post-container" id="newPostContainer">
-        <mat-progress-bar mode="indeterminate" *ngIf="disableBtn"></mat-progress-bar>
         <form class="example-form" #form="ngForm" [formGroup]="addPostForm" (submit)="addNewPost()" enctype="multipart/form-data">
           <mat-error *ngIf="error">
             {{errorMsg}}

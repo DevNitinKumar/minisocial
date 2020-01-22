@@ -1,1 +1,3 @@
 node_modules/
+src/app/config.ts
+Backend/app-config.js

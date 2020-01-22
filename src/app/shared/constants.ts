@@ -2,6 +2,7 @@ export class Constants {
     public static ROUTES = {
         IMAGE_UPLOAD : 'image_upload',
         USER_SIGNUP_CHECK : 'user_signup_checks',
+        IMAGE_UPLOAD_S3 : 'image_upload_s3',
         IMAGE_UPLOAD_CLOUD : 'image_upload_cloudinary',
         VERIFY_CAPTCHA : 'verify_captcha',
         ADD_USER_BY_GOOGLE_SIGNUP : 'add_user_to_db',

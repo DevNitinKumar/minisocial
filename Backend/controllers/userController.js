@@ -6,9 +6,10 @@ const Users = require("../data/users.model");
 const bcrypt = require("bcrypt");
 const CommonFun = require("../data/middlewares/common-functions");
 const paypal = require('paypal-rest-sdk');
+const cheerio = require('cheerio');
 const url = require('url');
+const fs = require("fs");
 const checksum_lib = require('../data/paytm-payment/checksum/checksum');
-const CONFIG = require('../app-config');
 const Nexmo = require('nexmo');
 let cloudinary = require('cloudinary').v2;
 
@@ -30,7 +31,6 @@ cloudinary.config({
     api_key: CONFIG.CLOUDINARY_API_KEY, 
     api_secret: CONFIG.CLOUDINARY_API_SECRET 
 });
-
 exports.imageUpload = function (req, res, callback) {
     const MIME_TYPES_ALLOWED = {
         'image/png': 'png',
@@ -534,7 +534,27 @@ exports.paytmPaymentCheckout = function (data, token, res, callback) {
 
 
 exports.paytmPaymentSuccess = function (data, req, res, callback) {
-    if (data.RESPCODE === '01') {  
+    if (data.RESPCODE === '01') {        
+        // const ncco = [
+        //     {
+        //       action: 'talk',
+        //       voiceName: 'Aditi',
+        //       level: 1,
+        //       loop: 10,
+        //       text: '<speak><lang xml:lang="hi-IN">Hello Nitin, Your payment has been done successfully.<break time="1s"/> ThankYou!</lang></speak>',
+        //     },
+        // ];
+        // nexmo.message.sendSms(from, to, text);
+        // nexmo.calls.create(
+        //     {
+        //       to: [{ type: 'phone', number: '917988580827' }],
+        //       from: { type: 'phone', number: '917988580827' },
+        //       ncco,
+        //     },
+        //     (err, result) => {
+        //       console.log(err || result);
+        //     },
+        // );
         return res.redirect(url.format({
             pathname: "https://minisocialmedia.herokuapp.com/paytm-payment-success",
             query: {
@@ -572,6 +592,12 @@ exports.paytmPaymentSuccess = function (data, req, res, callback) {
         }));
     }
 
+}
+
+
+exports.contactAdmin = function (data, callback) {
+    nexmo.message.sendSms(from, to, text);
+    return callback(null, null);
 }
 
 

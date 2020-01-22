@@ -3,7 +3,8 @@ const route = express.Router();
 const userController = require("../controllers/userController");
 const checkUserAuth = require("../data/middlewares/check-user");
 const request = require('request');
-
+const fileUpload = require('../data/middlewares/file-uploading');
+const passport = require('passport');
 /**
  * @swagger
  * /api/image_upload:
@@ -51,7 +52,6 @@ route.post("/add_user_to_db",function(req,res) {
         }
     })
 });
-
 
 
 route.post("/user_signup_checks",function(req,res) {

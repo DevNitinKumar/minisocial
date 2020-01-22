@@ -36,8 +36,8 @@ export class PaymentComponent implements OnInit, AfterViewInit {
               }
             ],
             redirect_urls: {
-              return_url: 'https://minisocialmedia.herokuapp.com/payment-success',
-              cancel_url: 'https://minisocialmedia.herokuapp.com/failure'
+              return_url: 'http://localhost:4000/payment-success',
+              cancel_url: 'http://localhost:4000/failure'
             }
           }
         });

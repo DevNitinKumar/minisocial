@@ -32,8 +32,8 @@ module.exports.generatePassword = function(length) {
  
 
 //remove images from localFolder
-module.exports.deleteImageFromLocall = function (fileName) {
-    fs.unlink('./Backend/data/uploads/' + fileName, function (err) {
+module.exports.deleteImageFromLocall = function (fileNameArray) {
+    fs.unlink('./Backend/data/uploads/' + fileNameArray, function (err) {
         if (!err) {
             console.log(Constants.FILE_DELETED);
         } else {
@@ -77,7 +77,7 @@ module.exports.validateUsername = function validateUsername(username) {
 
 
 // to send Notification 
-const FCM = require('./node_modules/fcm-node');
+const FCM = require('fcm-node');
 const serverKey = 'AIzaSyB-cBomg4dOdfwtlLVD_bmIs4UMg2Nuu20'; //put your server key here
 const fcm = new FCM(serverKey);
 

@@ -15,7 +15,7 @@ export class HttpService {
   imageUpload = (image) => {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.IMAGE_UPLOAD}`, image);
   }
-
+  
   checkUser = (data) => {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.USER_SIGNUP_CHECK}`, data);
   }
@@ -39,9 +39,9 @@ export class HttpService {
   verifyOTP = (reqId, otp) => {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.VERIFY_OTP}`, { reqId, otp });
   }
-
+  
   addUserToDB = (data) => {
-    return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.ADD_USER_BY_GOOGLE_SIGNUP}`, data);
+    return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.ADD_USER_BY_GOOGLE_SIGNUP}`,data);
   }
 
   userSignup = (userData) => {
