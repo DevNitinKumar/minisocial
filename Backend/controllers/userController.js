@@ -12,6 +12,7 @@ const fs = require("fs");
 const checksum_lib = require('../data/paytm-payment/checksum/checksum');
 const Nexmo = require('nexmo');
 let cloudinary = require('cloudinary').v2;
+let CONFIG = require('../app-config');
 
 paypal.configure({
     'mode': CONFIG.PAYPAL_MODE, //sandbox or live

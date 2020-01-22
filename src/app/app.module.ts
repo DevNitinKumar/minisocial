@@ -65,11 +65,12 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { CONFIG } from './config';
 
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('36814645377-rkvufq4l6j48rm8oaoriae1408137mtn.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider(CONFIG.KEY.CLIENTID)
   }
   // {
   //   id: FacebookLoginProvider.PROVIDER_ID,
@@ -135,7 +136,7 @@ const appRoutes: Routes = [
     ),
     AgmCoreModule.forRoot({
       // apiKey : 'AIzaSyAQoW8KzASlmvBTEXzBm9Ki7bTx6eotR5Q'
-      apiKey : 'AIzaSyB_G7ern6dzWvSUGnVtT2shOG98xXqpZbQ', libraries: ['places']
+      apiKey : CONFIG.KEY.GOOGLE_MAP_KEY, libraries: ['places']
     }),
     // EmojiPickerModule.forRoot(),
     NgxEmojiPickerModule.forRoot(),
