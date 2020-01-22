@@ -3,7 +3,7 @@ const route = express.Router();
 const userController = require("../controllers/userController");
 const checkUserAuth = require("../data/middlewares/check-user");
 const request = require('request');
-const upload = require('../data/middlewares/file-uploading');
+
 /**
  * @swagger
  * /api/image_upload:
@@ -40,6 +40,18 @@ route.post("/image_upload_cloudinary", (req, res) => {
         }
     })  
 });
+
+
+route.post("/add_user_to_db",function(req,res) {
+    userController.addUserToDB(req.body,function(err,data) {
+        if(err) {
+            return res.status(200).json({ status: 200, success: false, message: err, data: null })
+        }else{
+            return res.status(200).json({ status: 200, success: true, message: "user added to DB successfully", data: data })
+        }
+    })
+});
+
 
 
 route.post("/user_signup_checks",function(req,res) {

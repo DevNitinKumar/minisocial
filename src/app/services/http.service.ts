@@ -40,6 +40,10 @@ export class HttpService {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.VERIFY_OTP}`, { reqId, otp });
   }
 
+  addUserToDB = (data) => {
+    return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.ADD_USER_BY_GOOGLE_SIGNUP}`, data);
+  }
+
   userSignup = (userData) => {
     return this.http.post<ApiResponse>(`${API_KEY}/${this.apiUrls.ROUTES.USER_SIGNUP}`, userData);
   }

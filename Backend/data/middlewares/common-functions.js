@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require("./node_modules/nodemailer");
 const Constants = require("../constants");
 const fs = require("fs");
 
@@ -77,7 +77,7 @@ module.exports.validateUsername = function validateUsername(username) {
 
 
 // to send Notification 
-const FCM = require('fcm-node');
+const FCM = require('./node_modules/fcm-node');
 const serverKey = 'AIzaSyB-cBomg4dOdfwtlLVD_bmIs4UMg2Nuu20'; //put your server key here
 const fcm = new FCM(serverKey);
 

@@ -5,7 +5,7 @@ import { HttpService } from './http.service';
 import io from 'socket.io-client';
 
 @Injectable()
-export class AuthService {
+export class AuthServiceMain {
 
   public authStatus: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isAuthenticated = false;

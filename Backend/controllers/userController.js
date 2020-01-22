@@ -1,36 +1,34 @@
 const Constants = require("../data/constants");
-const multer = require("multer");
+const multer = require("./node_modules/multer");
 const Middleware = require("../data/middlewares/common-functions");
 const CheckUserWare = require("../data/middlewares/check-user");
 const Users = require("../data/users.model");
-const bcrypt = require("bcrypt");
+const bcrypt = require("./node_modules/bcrypt");
 const CommonFun = require("../data/middlewares/common-functions");
-const paypal = require('paypal-rest-sdk');
-const cheerio = require('cheerio');
+const paypal = require('./node_modules/paypal-rest-sdk');
 const url = require('url');
-const fs = require('fs');
 const checksum_lib = require('../data/paytm-payment/checksum/checksum');
-paypal.configure({
-    'mode': 'sandbox', //sandbox or live
-    'client_id': 'AfyHKbfTBvcLrCThwwdkA9SK3LdhzLEbUJABiV3_xEgSy2A5qeA7MgjeUBH_nhT2P1gGcbBRoX62hwz1',
-    'client_secret': 'ELWpqciz-I5uyHHi2-KfM7LyUR4KBkzxCsp_QVbeCIEPULGw91KIh1iH-uSDyLB6JV_dgSgudltgNw5D'
-});
+const CONFIG = require('../app-config');
 const Nexmo = require('nexmo');
-const nexmo = new Nexmo({
-    apiKey: 'd3a2a222',
-    apiSecret: 'dCpZmOI4SK2OPOpN',
-    applicationId: 'bdf6cddc-4a4f-443e-a870-137866435efc',
-    privateKey: '-----BEGIN PRIVATE KEY----- MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9A2WUFO73PvrV5K1evUo3JStufxPvUFfuzJOuJ9Ad6p/lBJCK9LahKsNCle3hHMHfcHlmc363/R5M/HxvV1UjxvOPo0Czmxc0jfDCabtfF834O9ovui1HvWRrzaMuqcpzQmGpkb7Rmh8Y77qHMhA9GSh+JykejD0Zy1drEuaCzhzBKpqLyMQ/k86TRzRoLkY1VVRgh6kh1as6FSAqTtZiDZKIATcrdBrjpJ+u8MoGlNADVYin03OcTge0d77K4wPlJnlFJMoDRI/9C12WKvq4s+tT18HZdf5yMf9PPlB8Z26BkpO8GJWfBpOpS3fbvPAqwifsbH2XqY26Qb5u4lllAgMBAAECggEABWMAJVr+X3oCRI/GmB1dbNpolTbWbtrTkrjuWYeFcSDTaz+4zdkBDnFNTMvAkoqTBObr8s1GVoCGeUu10SeEQ+eC3/xXVvcLz4HfE29XeXOQeWtdQcB002dUohTjemw42pWQ+nfuoAMcMUX9wyYcW91ob8X2cEovYJmQtXq9qosgMV3mJy8sWrWYG06GNRNxKLFqEgKQrW0b+2iCgFy6RsmK/8AcuFP2OC7SnavtC/94NPjLMk9v7JA39d0JGABpDJ/KORC4FQYqpwaK5H0LK39I4l7MhP+6GsIrL/2gSx91QAJoV+CFgLMU1WHA/Q5HxX2QhJTm/M6RHr6lbKtVkQKBgQDcwg7q1O29ZpbXjmF54SgPTawnSR8ZW3adrcha8/UFL/l6v14AO/czluS4F1D/X6slDCiM66ABHl2Ge/MWDE51M1cRLfbRl284frF4QUv9RMG+abNDbCir/OOp1sKMBulMHOekyxr1qMuwCLWe4sORJhJgobkozO1GUkL4oDNFdQKBgQDbL/4uR+Rxzq5iYzaYE5iz9Oljcol3I5G+oaYLk917Usr2830mONN8nEZbaVwNaYpYs4juA7rMpTBFLQFkhB9K8kCBOixFat/ExnQ5JDjqiFcjie7qzZ+u10TQvLt2gRvPEC5LYsWVGoGKcDlqho7T/72WInL4c3y5z7cz03IWMQKBgQCybvh3v1vaN029NYx8Yw1qMTHxHx1P9anOkWTcf0uQwdI48O0d61pIDLMaSV5izAUdkNJF9T4DKXQW+6DkNVZFTRYXALv7dRek5mKz/LNbJ3QiYHVRDd9iBKpP4RKm8/8mUka54KEN5z2cL639mvTQIaHBEXcED3/J0zvmkjZe8QKBgQCrjU6mLoKwSJHYU8rBEGVuQ/v/aAALjX1e9OofGaY6Bbzxt/V12vg8CZxPo5D2tmofrrU3hRfJYGj9W5JBd99+K0ktW7iWxGVLgAArURxzBC8fk6+5eyLGF5q2vWEECV0YnZN+UVpPryVAk0F9DL/xUbKzNVdC+jDexaKgH5iloQKBgEyIFHbsBUz8yu5obwHSM09MeujuRS/5ex333a1UfRpLE7CiRP9Yp6ivO7vvz0YC60CqhqIM7FQFELqbxlFIKcnQ0r88g8gdCBm0DAVG0FEkHEeQ4PL+JjL0Ai25Um24QziI44BNCq0MiHdp7TrKvsLGSXcPq18VnZfq57BXhRCL -----END PRIVATE KEY-----'
-});
-const from = 'Nitin Kumar';
-const to = '917988580827';
-const text = 'Payment Successful';
-// hi-IN , en-IN
 let cloudinary = require('cloudinary').v2;
+
+paypal.configure({
+    'mode': CONFIG.PAYPAL_MODE, //sandbox or live
+    'client_id': CONFIG.PAYPAL_CLIENT_ID,
+    'client_secret': CONFIG.PAYPAL_CLIENT_SECRET
+});
+
+const nexmo = new Nexmo({
+    apiKey: CONFIG.NEXMO_API_KEY,
+    apiSecret: CONFIG.NEXMO_API_SECRET,
+    applicationId: CONFIG.NEXMO_APP_ID,
+    privateKey: CONFIG.NEXMO_PRIVATE_KEY
+});
+
 cloudinary.config({ 
-    cloud_name: 'minisocial', 
-    api_key: '843155316276214', 
-    api_secret: 'egQz2RZQ20EjmSrV6CLF20Ifovo' 
+    cloud_name: CONFIG.CLOUDINARY_CLOUD_NAME, 
+    api_key: CONFIG.CLOUDINARY_API_KEY, 
+    api_secret: CONFIG.CLOUDINARY_API_SECRET 
 });
 
 exports.imageUpload = function (req, res, callback) {
@@ -96,6 +94,49 @@ exports.imageUploadCloud = function (req, res, callback) {
             return callback(null, result.url);
         });
     })   
+}
+
+
+exports.addUserToDB = function(data,callback) {    
+    Users.find({ 'googleId': data.googleId }).countDocuments()  // user data already exist check
+        .then((result) => {
+            if (result === 0) {
+                const userData = new Users({
+                    googleId : data.googleId,
+                    username: data.username.toLowerCase().trim(),
+                    email: data.email.toLowerCase().trim(),
+                    password: '',
+                    address: '',
+                    phone: '',
+                    profileImage: '',
+                    dob: '',
+                    createdAt: new Date().getTime()
+                });
+                userData.save().then((fetchedUser) => {
+                    if (!fetchedUser) {
+                        return callback(Constants.COMMON_ERROR_MESSAGE);
+                    }
+                    const data = { email: fetchedUser.email, userId: fetchedUser._id, username: fetchedUser.username };
+                    const token = CheckUserWare.generateToken(data);
+                    return callback(null, { token: token })
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return callback(Constants.COMMON_ERROR_MESSAGE)
+                })
+            } else {
+                Users.findOne({ 'googleId': data.googleId })
+                .then((result) => {
+                    const data = { email: result.email, userId: result._id, username: result.username };
+                    const token = CheckUserWare.generateToken(data);
+                    return callback(null, { token: token })
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return callback(Constants.COMMON_ERROR_MESSAGE)
+                })
+            }            
+        })
 }
 
 
@@ -493,27 +534,7 @@ exports.paytmPaymentCheckout = function (data, token, res, callback) {
 
 
 exports.paytmPaymentSuccess = function (data, req, res, callback) {
-    if (data.RESPCODE === '01') {        
-        // const ncco = [
-        //     {
-        //       action: 'talk',
-        //       voiceName: 'Aditi',
-        //       level: 1,
-        //       loop: 10,
-        //       text: '<speak><lang xml:lang="hi-IN">Hello Nitin, Your payment has been done successfully.<break time="1s"/> ThankYou!</lang></speak>',
-        //     },
-        // ];
-        // nexmo.message.sendSms(from, to, text);
-        // nexmo.calls.create(
-        //     {
-        //       to: [{ type: 'phone', number: '917988580827' }],
-        //       from: { type: 'phone', number: '917988580827' },
-        //       ncco,
-        //     },
-        //     (err, result) => {
-        //       console.log(err || result);
-        //     },
-        // );
+    if (data.RESPCODE === '01') {  
         return res.redirect(url.format({
             pathname: "https://minisocialmedia.herokuapp.com/paytm-payment-success",
             query: {
@@ -551,12 +572,6 @@ exports.paytmPaymentSuccess = function (data, req, res, callback) {
         }));
     }
 
-}
-
-
-exports.contactAdmin = function (data, callback) {
-    nexmo.message.sendSms(from, to, text);
-    return callback(null, null);
 }
 
 

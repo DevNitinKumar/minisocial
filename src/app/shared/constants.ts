@@ -4,6 +4,7 @@ export class Constants {
         USER_SIGNUP_CHECK : 'user_signup_checks',
         IMAGE_UPLOAD_CLOUD : 'image_upload_cloudinary',
         VERIFY_CAPTCHA : 'verify_captcha',
+        ADD_USER_BY_GOOGLE_SIGNUP : 'add_user_to_db',
         USER_SIGNUP : 'user_signup',
         USER_LOGIN : 'user_login',
         USER_FORGOT_PWD : 'user_forgot_pwd',

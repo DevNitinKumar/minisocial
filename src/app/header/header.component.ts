@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthServiceMain } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { HttpService } from '../services/http.service';
 import * as _ from 'lodash';
@@ -26,14 +26,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   msgNumber: any = 0;
   onlineUsersList: any;
 
-  constructor(private authService: AuthService,private router: Router, private httpService: HttpService, public dialog: MatDialog) {
+  constructor(private AuthServiceMain: AuthServiceMain,private router: Router, private httpService: HttpService, public dialog: MatDialog) {
     // this.socket = io('http://localhost:3800');
     this.socket = io('https://minisocialmedia.herokuapp.com');
   }
 
   ngOnInit() {
-    // this.checkUser = this.authService.getIsAuth();
-    // this.authService.authStatus.subscribe((res) => {
+    // this.checkUser = this.AuthServiceMain.getIsAuth();
+    // this.AuthServiceMain.authStatus.subscribe((res) => {
     //   this.checkUser = res;
     // });
     this.getUserProfile();
@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     //   this.onlineUsersList = data;
     //   this.OnlineUsers.emit(data);
     // });
-    this.authService.logout();
+    this.AuthServiceMain.logout();
   }
 
   getUserProfile = () => {

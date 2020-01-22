@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { AuthServiceMain } from '../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,11 +11,11 @@ export class FooterComponent implements OnInit {
   authStatus$: Observable<boolean>;
   checkUser: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(private AuthServiceMain: AuthServiceMain) { }
 
   ngOnInit() {
-    this.checkUser = this.authService.getIsAuth();
-    this.authService.authStatus.subscribe((res) => {
+    this.checkUser = this.AuthServiceMain.getIsAuth();
+    this.AuthServiceMain.authStatus.subscribe((res) => {
       this.checkUser = res;
     });
   }

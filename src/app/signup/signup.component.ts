@@ -3,7 +3,7 @@ import { FormControl, Validators, FormGroup, MinLengthValidator, FormBuilder } f
 import * as moment from 'moment';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthServiceMain } from '../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -38,7 +38,7 @@ export class SignupComponent implements OnInit {
   fd: FormData;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router, private AuthServiceMain: AuthServiceMain) {
     this.signupForm = this.formBuilder.group({
       username : new FormControl('', [Validators.required]),
       email : new FormControl('', [Validators.required, Validators.email]),

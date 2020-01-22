@@ -33,7 +33,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from './services/http.service';
 import { AuthGuard } from './services/auth.gaurd';
-import { AuthService } from './services/auth.service';
+import { AuthServiceMain } from './services/auth.service';
 import { Restrict } from './services/restrict.guard';
 import { InterceptHeaderHttps } from './services/intercept.header.https';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -62,6 +62,20 @@ import { PaytmPaymentSuccessComponent } from './paytm-payment-success/paytm-paym
 import { NgOtpInputModule } from 'ng-otp-input';
 import { RecaptchaModule } from 'ng-recaptcha';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { CONFIG } from './config';
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(CONFIG.KEY.CLIENTID)
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 
 const appRoutes: Routes = [
@@ -118,7 +132,7 @@ const appRoutes: Routes = [
     ),
     AgmCoreModule.forRoot({
       // apiKey : 'AIzaSyAQoW8KzASlmvBTEXzBm9Ki7bTx6eotR5Q'
-      apiKey : 'AIzaSyB_G7ern6dzWvSUGnVtT2shOG98xXqpZbQ', libraries: ['places']
+      apiKey : CONFIG.KEY.GOOGLE_MAP_KEY, libraries: ['places']
     }),
     NgxEmojiPickerModule.forRoot(),
     BrowserModule,
@@ -148,16 +162,23 @@ const appRoutes: Routes = [
     WebcamModule,
     NgOtpInputModule,
     RecaptchaModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    SocialLoginModule
   ],
   exports : [
     HeaderComponent
   ],
-  providers: [{
+  providers: [
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: InterceptHeaderHttps,
     multi: true
-  }, HttpService, AuthGuard, AuthService, MapsService, Restrict, HeaderComponent],
+  },
+  {
+    provide: AuthServiceConfig,
+    useFactory: provideConfig
+  },
+  HttpService, AuthGuard, AuthServiceMain, MapsService, Restrict, HeaderComponent],
   bootstrap: [AppComponent],
   entryComponents: [ChatComponent]
 })
