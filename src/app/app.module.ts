@@ -65,7 +65,6 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
-import { CONFIG } from './config';
 
 let config = new AuthServiceConfig([
   {

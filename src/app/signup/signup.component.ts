@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
 import { AuthServiceMain } from '../services/auth.service';
-import { CONFIG } from '../config';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
