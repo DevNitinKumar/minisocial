@@ -70,7 +70,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider(process.env.GOOGLE_CLIENTID)
+    provider: new GoogleLoginProvider('36814645377-rkvufq4l6j48rm8oaoriae1408137mtn.apps.googleusercontent.com')
   }
   // {
   //   id: FacebookLoginProvider.PROVIDER_ID,
@@ -136,7 +136,7 @@ const appRoutes: Routes = [
     ),
     AgmCoreModule.forRoot({
       // apiKey : 'AIzaSyAQoW8KzASlmvBTEXzBm9Ki7bTx6eotR5Q'
-      apiKey : process.env.GOOGLE_MAP_KEY, libraries: ['places']
+      apiKey : 'AIzaSyB_G7ern6dzWvSUGnVtT2shOG98xXqpZbQ', libraries: ['places']
     }),
     // EmojiPickerModule.forRoot(),
     NgxEmojiPickerModule.forRoot(),
