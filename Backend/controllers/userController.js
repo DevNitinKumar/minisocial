@@ -15,23 +15,25 @@ let cloudinary = require('cloudinary').v2;
 let CONFIG = require('../app-config');
 
 paypal.configure({
-    'mode': CONFIG.PAYPAL_MODE, //sandbox or live
-    'client_id': CONFIG.PAYPAL_CLIENT_ID,
-    'client_secret': CONFIG.PAYPAL_CLIENT_SECRET
+    mode: process.env.PAYPAL_MODE, //sandbox or live
+    client_id: process.env.PAYPAL_CLIENT_ID,
+    client_secret: process.env.PAYPAL_CLIENT_SECRET
 });
 
 const nexmo = new Nexmo({
-    apiKey: CONFIG.NEXMO_API_KEY,
-    apiSecret: CONFIG.NEXMO_API_SECRET,
-    applicationId: CONFIG.NEXMO_APP_ID,
-    privateKey: CONFIG.NEXMO_PRIVATE_KEY
+    apiKey: process.env.NEXMO_API_KEY,
+    apiSecret: process.env.NEXMO_API_SECRET,
+    applicationId: process.env.NEXMO_APP_ID,
+    privateKey: process.env.NEXMO_PRIVATE_KEY
 });
 
 cloudinary.config({ 
-    cloud_name: CONFIG.CLOUDINARY_CLOUD_NAME, 
-    api_key: CONFIG.CLOUDINARY_API_KEY, 
-    api_secret: CONFIG.CLOUDINARY_API_SECRET 
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+    api_key: process.env.CLOUDINARY_API_KEY, 
+    api_secret: process.env.CLOUDINARY_API_SECRET 
 });
+
+
 exports.imageUpload = function (req, res, callback) {
     const MIME_TYPES_ALLOWED = {
         'image/png': 'png',

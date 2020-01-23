@@ -53,13 +53,13 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.captchaSiteKey = CONFIG.KEY.CAPTCHA_SITE_KEY;
+    this.captchaSiteKey = '6Lc999EUAAAAAFkBL3KmtXZU8DYD-CW4qpxCoQvG';
     if (localStorage.getItem('currentUser')) {
       this.router.navigate(['/dashboard']);
     }
     // Change <body> styling
     document.body.classList.add('background');
-  } 
+  }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
@@ -185,7 +185,7 @@ export class SignupComponent implements OnInit {
   }
 
   resolved(captchaResponse: string) {
-    const secretKey = CONFIG.KEY.CAPTCHA_SECRET_KEY;
+    const secretKey = '6Lc999EUAAAAALc5chiKMwfBhpVlDNXRcsk_YR77';
     this.httpService.verifyCaptcha(captchaResponse,secretKey).subscribe((res) => {
       if (res.success) {
         this.disableSbt = false;
