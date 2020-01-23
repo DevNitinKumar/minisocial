@@ -1,3 +1,4 @@
+/// <reference types="node" /> 
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, MinLengthValidator, FormBuilder } from '@angular/forms';
 import * as moment from 'moment';
@@ -53,7 +54,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.captchaSiteKey = '6Lc999EUAAAAAFkBL3KmtXZU8DYD-CW4qpxCoQvG';
+    this.captchaSiteKey = process.env.CAPTCHA_SITE_KEY;
     if (localStorage.getItem('currentUser')) {
       this.router.navigate(['/dashboard']);
     }
@@ -185,7 +186,7 @@ export class SignupComponent implements OnInit {
   }
 
   resolved(captchaResponse: string) {
-    const secretKey = '6Lc999EUAAAAALc5chiKMwfBhpVlDNXRcsk_YR77';
+    const secretKey = process.env.CAPTCHA_SECRET_KEY;
     this.httpService.verifyCaptcha(captchaResponse,secretKey).subscribe((res) => {
       if (res.success) {
         this.disableSbt = false;

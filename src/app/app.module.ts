@@ -1,3 +1,4 @@
+/// <reference types="node" /> 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -69,7 +70,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('36814645377-rkvufq4l6j48rm8oaoriae1408137mtn.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider(process.env.GOOGLE_CLIENTID)
   }
   // {
   //   id: FacebookLoginProvider.PROVIDER_ID,
@@ -135,7 +136,7 @@ const appRoutes: Routes = [
     ),
     AgmCoreModule.forRoot({
       // apiKey : 'AIzaSyAQoW8KzASlmvBTEXzBm9Ki7bTx6eotR5Q'
-      apiKey : 'AIzaSyB_G7ern6dzWvSUGnVtT2shOG98xXqpZbQ', libraries: ['places']
+      apiKey : process.env.GOOGLE_MAP_KEY, libraries: ['places']
     }),
     // EmojiPickerModule.forRoot(),
     NgxEmojiPickerModule.forRoot(),
