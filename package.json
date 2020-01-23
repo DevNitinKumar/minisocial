@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-postbuild": "ng build --prod",
-    "postinstall": ["./src/app/config.ts","./Backend/app-config.js"]
+    "postinstall": "./src/app/config.ts"
   },
   "private": true,
   "dependencies": {
