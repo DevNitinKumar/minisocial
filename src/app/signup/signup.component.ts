@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
     }
     // Change <body> styling
     document.body.classList.add('background');
-  }
+  } 
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
