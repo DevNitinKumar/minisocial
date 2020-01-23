@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { HttpService } from '../services/http.service';
 import { Router } from '@angular/router';
 import { AuthServiceMain } from '../services/auth.service';
-
+import { CONFIG } from '../config';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -36,6 +36,7 @@ export class SignupComponent implements OnInit {
   downloadTimer: any;
   disableSbt:boolean = true;
   fd: FormData;
+  captchaSiteKey: any;
 
   // tslint:disable-next-line: max-line-length
   constructor(private formBuilder: FormBuilder, private httpService: HttpService, private router: Router, private authService: AuthServiceMain) {
@@ -52,6 +53,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.captchaSiteKey = CONFIG.KEY.CAPTCHA_SITE_KEY;
     if (localStorage.getItem('currentUser')) {
       this.router.navigate(['/dashboard']);
     }
@@ -183,7 +185,7 @@ export class SignupComponent implements OnInit {
   }
 
   resolved(captchaResponse: string) {
-    const secretKey = '6LeEts0UAAAAACyyqpH_WnGyq2606p16h9DAiYzX';
+    const secretKey = CONFIG.KEY.CAPTCHA_SECRET_KEY;
     this.httpService.verifyCaptcha(captchaResponse,secretKey).subscribe((res) => {
       if (res.success) {
         this.disableSbt = false;

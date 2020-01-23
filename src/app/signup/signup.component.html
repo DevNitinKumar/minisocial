@@ -56,7 +56,7 @@
           dob is  <strong>required</strong>
         </mat-error>
       </mat-form-field>
-      <re-captcha (resolved)="resolved($event)" siteKey="6LeEts0UAAAAALaig4OFPUZisQ2undCyx1Vc4N5_" style="margin-left: 30px;"></re-captcha>      
+      <re-captcha (resolved)="resolved($event)" siteKey="{{captchaSiteKey}}" style="margin-left: 30px;"></re-captcha>      
       <button mat-raised-button color="primary" [disabled]="disableSbt" [ngStyle]="disableSbt ? {'opacity' : '0.7'} : ''" style="max-width: 100px;margin-left : 255px;margin-top : 20px;">SUBMIT</button>
       <span style="margin-top: -25px;font-size:14px">Already Registered?<a class="removeOut" style="color:#4e53e2;cursor: pointer;" routerLink="/login"> Login Instead</a></span>
     </div>    
